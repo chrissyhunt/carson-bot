@@ -1,0 +1,7 @@
+<h1><%=@category.name%></h1>
+
+<% @user_items.each do |item| %>
+  <%=item.name if @category.items.include?(item)%><br>
+<% end %>
+
+<a href="/categories">Return to all categories</a>

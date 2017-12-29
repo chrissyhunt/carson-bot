@@ -1,0 +1,15 @@
+<h1>Edit a Category</h1>
+
+<% if !@category.admin_lock %>
+
+  <form action="/categories/<%=@category.id%>/edit" method="post">
+    <input type="hidden" name="category[admin_lock]" value="false">
+    <p>Name: <input type="text" name="category[name]" value="<%=@category.name%>"></p>
+    <input type="submit" value="Edit Category">
+  </form>
+
+<% else %>
+
+  <p>This category is a default category and cannot be edited. <a href="/categories">Select something else from the list.</a></p>
+
+<% end %>

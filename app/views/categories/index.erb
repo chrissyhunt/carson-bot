@@ -2,8 +2,7 @@
 
 <% @user_categories.each do |category| %>
 
-<h3><%=category.name%></h3>
-<a href="/categories/<%=category.id%>/edit">Edit this Category</a>
+<h3><a href="/categories/<%=category.id%>"><%=category.name%></a> (<a href="/categories/<%=category.id%>/edit">edit</a>)</h3>
 
   <ul>
     <% category.items.each do |item| %>
@@ -12,5 +11,3 @@
   </ul>
 
 <% end %>
-
-<a href="/categories/new">Create a New Category</a>
