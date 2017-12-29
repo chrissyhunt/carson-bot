@@ -1,0 +1,16 @@
+<h1><%=@user.name%>'s Items by Category</h1>
+
+<% @user_categories.each do |category| %>
+
+<h3><%=category.name%></h3>
+<a href="/categories/<%=category.id%>/edit">Edit this Category</a>
+
+  <ul>
+    <% category.items.each do |item| %>
+      <li><%=item.name if @user.items.include?(item)%></li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+<a href="/categories/new">Create a New Category</a>

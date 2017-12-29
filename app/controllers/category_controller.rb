@@ -2,6 +2,7 @@ class CategoryController < ApplicationController
 
   get '/categories' do
     if logged_in?
+      @user = current_user
       @user_categories = current_user.categories
       erb :'categories/index'
     else
