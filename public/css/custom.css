@@ -1,0 +1,48 @@
+html, body, h1, h2, h3, p {
+  font-family: 'avenir next', avenir, roboto, noto, ubuntu, 'helvetica neue', helvetica, arial, sans-serif;
+}
+
+img#welcome-header {
+  width: 70%;
+  margin: auto;
+}
+
+div.welcome-header {
+  width: 100%;
+  text-align: center;
+}
+
+div.welcome-text {
+  margin-top: 1%;
+  padding: 2%;
+  width: 75%;
+  text-align: center;
+  background-color: #FFDC00;
+  color: #FFFFFF;
+}
+
+div.welcome-text a {
+  background-color: #7FDBFF;
+  padding: 0.8%;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px #AAA;
+}
+
+div.welcome-text a:hover {
+  background-color: #F012BE;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+div.welcome-text h1 {
+  font-size: 280%;
+  text-shadow: 1px 1px #AAA;
+  padding: 0.8%;
+}
+
+div.welcome-text p {
+  padding: 0.8%;
+}
