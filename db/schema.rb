@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171229153038) do
+ActiveRecord::Schema.define(version: 20171229194404) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.boolean "admin_lock"
   end
 
   create_table "items", force: :cascade do |t|
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 20171229153038) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
+    t.boolean "admin_lock"
   end
 
   create_table "shopping_list", force: :cascade do |t|
