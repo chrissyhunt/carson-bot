@@ -1,0 +1,50 @@
+<h1>Edit an Item</h1>
+<form action="/items/<%=@item.id%>/edit" method="post">
+  <input type="hidden" name="item[user_id]" value="<%=@user.id%>">
+  <p>Item Name: <input type="text" name="item[name]" value="<%=@item.name%>"></p>
+  <p>Item Category:<br>
+    <% @categories.each do |category| %>
+      <input type="radio" name="item[category_id]" value="<%=category.id%>" <%='checked' if @item.category_id == category.id %>> <%=category.name%><br>
+    <% end %></p>
+
+  <p>Or create a new item category: <input type="text" name="item_category"></p>
+
+  <p>Current Location:<br>
+    <% @locations.each do |location| %>
+      <input type="radio" name="item[location_id]" value="<%=location.id%>" <%='checked' if @item.location_id == location.id %>> <%=location.name%><br>
+    <% end %></p>
+
+  <p>Or create a new location: <input type="text" name="location_name"></p>
+
+  <p>Is this item perishable?<br>
+  <p><input type="radio" name="item[perishable]" value="true" <%='checked' if !!@item.perishable %>> Yes
+    <input type="radio" name="item[perishable]" value="false" <%='checked' if !@item.perishable %>> No</p>
+
+  <p>Condition Status:<br>
+    <input type="radio" name="item[condition_status]" value="Good" <%='checked' if @item.condition_status == "Good"%>> Good<br>
+    <input type="radio" name="item[condition_status]" value="Clean" <%='checked' if @item.condition_status == "Clean"%>> Needs Cleaning<br>
+    <input type="radio" name="item[condition_status]" value="Repair" <%='checked' if @item.condition_status == "Repair"%>> Needs Repair<br>
+    <input type="radio" name="item[condition_status]" value="Replace" <%='checked' if @item.condition_status == "Replace"%>> Needs Replacement/Restock<br>
+    <input type="radio" name="item[condition_status]" value="Lost" <%='checked' if @item.condition_status == "Lost"%>> Lost</p>
+
+  <p>Condition Notes: <input type="text" name="item[condition_notes]"></p>
+  <p>Warranty or Registration Code: <input type="text" name="item[registration_code]" value="<%=@item.registration_code%>"></p>
+
+  <p>Replacement Value: $<input type="number" name="item[value]" value="<%=@item.value%>"></p>
+
+  <p>Approximate Size:<br>
+    <input type="radio" name="item[size]" value="Small" <%='checked' if @item.size == "Small"%>> Small<br>
+    <input type="radio" name="item[size]" value="Medium" <%='checked' if @item.size == "Medium"%>> Medium<br>
+    <input type="radio" name="item[size]" value="Large" <%='checked' if @item.size == "Large"%>> Large</p>
+
+  <p>Approximate Weight:<br>
+    <input type="radio" name="item[weight]" value="Light" <%='checked' if @item.weight == "Light"%>> Light (less than 30 lbs.)<br>
+    <input type="radio" name="item[weight]" value="Heavy" <%='checked' if @item.weight == "Heavy"%>> Heavy (1-person lift)<br>
+    <input type="radio" name="item[weight]" value="Very Heavy" <%='checked' if @item.weight == "Very Heavy"%>> Very Heavy (2+ person lift)</p>
+
+  <p>Date Acquired: <input type="date" name="item[date_acquired]" value="<%=@item.date_acquired%>"></p>
+
+  <p>Source: <input type="text" name="item[source]" value="<%=@item.source%>"></p>
+
+  <input type="submit" value="Edit Item">
+</form>

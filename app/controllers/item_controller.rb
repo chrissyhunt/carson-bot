@@ -48,12 +48,32 @@ class ItemController < ApplicationController
   end
 
   get '/items/:id/edit' do
+    @user = current_user
+    @locations = Location.all
+    @categories = Category.all
     @item = Item.find_by(id: params[:id])
     if logged_in? && @item.user_id == current_user.id
       erb :'items/edit'
     else
       redirect to '/users/login'
     end
+  end
+
+  post '/items/:id/edit' do
+    item = Item.find_by(id: params[:id])
+    item.update(params[:item])
+    if params[:location_name] != ""
+      new_location = Location.create(name: params[:location_name])
+      item.location_id = new_location.id
+    end
+
+    if params[:item_category] != ""
+      new_category = Category.create(name: params[:item_type])
+      item.category_id = new_category.id
+    end
+
+    item.save
+    redirect to "/items/#{item.id}"
   end
 
 end
