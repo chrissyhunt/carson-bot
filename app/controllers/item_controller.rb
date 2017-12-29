@@ -22,7 +22,6 @@ class ItemController < ApplicationController
   end
 
   post '/items/new' do
-    binding.pry
     item = Item.create(params[:item])
     if params[:location_name] != ""
       new_location = Location.create(name: params[:location_name])
