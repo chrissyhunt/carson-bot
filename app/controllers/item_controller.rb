@@ -13,10 +13,29 @@ class ItemController < ApplicationController
   get '/items/new' do
     if logged_in?
       @user = current_user
+      @locations = Location.all
+      @categories = Category.all
       erb :'items/create'
     else
       redirect to '/users/login'
     end
+  end
+
+  post '/items/new' do
+    binding.pry
+    item = Item.create(params[:item])
+    if params[:location_name] != ""
+      new_location = Location.create(name: params[:location_name])
+      item.location_id = new_location.id
+    end
+
+    if params[:item_category] != ""
+      new_category = Category.create(name: params[:item_type])
+      item.category_id = new_category.id
+    end
+
+    item.save
+    redirect to '/items'
   end
 
   get '/items/:id' do

@@ -2,8 +2,19 @@
 <form action="/items/new" method="post">
   <input type="hidden" name="item[user_id]" value="<%=@user.id%>">
   <p>Item Name: <input type="text" name="item[name]"></p>
-  <p>Item Type: <input type="text" name="item[type]"></p>
-  <p>Current Location: <input type="text" name="item[location]"></p>
+  <p>Item Category:<br>
+    <% @categories.each do |category| %>
+      <input type="radio" name="item[category_id]" value="<%=category.id%>"> <%=category.name%><br>
+    <% end %></p>
+
+  <p>Or create a new item category: <input type="text" name="item_category"></p>
+
+  <p>Current Location:<br>
+    <% @locations.each do |location| %>
+      <input type="radio" name="item[location_id]" value="<%=location.id%>"> <%=location.name%><br>
+    <% end %></p>
+
+  <p>Or create a new location: <input type="text" name="location_name"></p>
 
   <p>Is this item perishable?<br>
   <p><input type="radio" name="item[perishable]" value="true"> Yes
@@ -16,24 +27,24 @@
     <input type="radio" name="item[condition_status]" value="Replace"> Needs Replacement/Restock<br>
     <input type="radio" name="item[condition_status]" value="Lost"> Lost</p>
 
-    <p>Condition Notes: <input type="text" name="item[condition_notes]"></p>
-    <p>Warranty or Registration Code: <input type="text" name="item[registration_code]"></p>
+  <p>Condition Notes: <input type="text" name="item[condition_notes]"></p>
+  <p>Warranty or Registration Code: <input type="text" name="item[registration_code]"></p>
 
-    <p>Replacement Value: $<input type="number" name="item[value]"></p>
+  <p>Replacement Value: $<input type="number" name="item[value]"></p>
 
-    <p>Approximate Size:<br>
-      <input type="radio" name="item[size]" value="Small"> Small<br>
-      <input type="radio" name="item[size]" value="Medium"> Medium<br>
-      <input type="radio" name="item[size]" value="Large"> Large</p>
+  <p>Approximate Size:<br>
+    <input type="radio" name="item[size]" value="Small"> Small<br>
+    <input type="radio" name="item[size]" value="Medium"> Medium<br>
+    <input type="radio" name="item[size]" value="Large"> Large</p>
 
-    <p>Approximate Weight:<br>
-      <input type="radio" name="item[weight]" value="Light"> Light (less than 30 lbs.)<br>
-      <input type="radio" name="item[weight]" value="Heavy"> Heavy (1-person lift)<br>
-      <input type="radio" name="item[weight]" value="Very Heavy"> Very Heavy (2+ person lift)</p>
+  <p>Approximate Weight:<br>
+    <input type="radio" name="item[weight]" value="Light"> Light (less than 30 lbs.)<br>
+    <input type="radio" name="item[weight]" value="Heavy"> Heavy (1-person lift)<br>
+    <input type="radio" name="item[weight]" value="Very Heavy"> Very Heavy (2+ person lift)</p>
 
-    <p>Date Acquired: <input type="date" name="item[date_acquired]"></p>
+  <p>Date Acquired: <input type="date" name="item[date_acquired]"></p>
 
-    <p>Source: <input type="text" name="item[source]"></p>
+  <p>Source: <input type="text" name="item[source]"></p>
 
   <input type="submit" value="Create Item">
 </form>
