@@ -1,0 +1,7 @@
+<h1><%=@location.name%></h1>
+
+<% @user_items.each do |item| %>
+  <%=item.name if @location.items.include?(item)%><br>
+<% end %>
+
+<a href="/locations">Return to all locations</a>

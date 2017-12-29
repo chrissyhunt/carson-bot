@@ -8,4 +8,5 @@ use Rack::MethodOverride
 use UserController
 use ItemController
 use CategoryController
+use LocationController
 run ApplicationController

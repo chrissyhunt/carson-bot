@@ -1,0 +1,13 @@
+<h1><%=@user.name%>'s Items by Location</h1>
+
+<% @user_locations.each do |location| %>
+
+<h3><a href="/locations/<%=location.id%>"><%=location.name%></a> (<a href="/locations/<%=location.id%>/edit">edit</a>)</h3>
+
+  <ul>
+    <% location.items.each do |item| %>
+      <li><%=item.name if @user.items.include?(item)%></li>
+    <% end %>
+  </ul>
+
+<% end %>
