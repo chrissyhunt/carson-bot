@@ -1,0 +1,7 @@
+<h1><%=@user.name%>'s Items:</h1>
+
+<% @user_items.each do |item| %>
+  <p><strong><%=item.name%></strong><br>
+    <strong>Location:</strong> <%=item.location.name%><br>
+    <a href="/items/<%=item.id%>">View more information</a></p>
+<% end %>

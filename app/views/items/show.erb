@@ -1,0 +1,15 @@
+<h1><%=@item.name%></h1>
+
+<p>Location: <%=@item.location.name%></p>
+<p>Category: <%=@item.category.name%></p>
+<p>Perishable: <%=@item.perishable%></p>
+<p>Condition Status: <%=@item.condition_status%></p>
+<p>Condition Notes: <%=@item.condition_notes%></p>
+<p>Registration Code: <%=@item.registration_code%></p>
+<p>Replacement Value: $<%=@item.value%></p>
+<p>Size: <%=@item.size%></p>
+<p>Weight: <%=@item.weight%></p>
+<p>Date Acquired: <%=@item.date_acquired%></p>
+<p>Source: <%=@item.source%></p>
+
+<p><a href="/items/<%=@item.id%>/edit">Edit this item</a></p>
