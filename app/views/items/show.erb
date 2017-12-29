@@ -2,7 +2,7 @@
 
 <p>Location: <%=@item.location.name%></p>
 <p>Category: <%=@item.category.name%></p>
-<p>Perishable: <%=@item.perishable%></p>
+<p>Perishable: <%='Yes' if !!@item.perishable%> <%='No' if !@item.perishable%></p>
 <p>Condition Status: <%=@item.condition_status%></p>
 <p>Condition Notes: <%=@item.condition_notes%></p>
 <p>Registration Code: <%=@item.registration_code%></p>

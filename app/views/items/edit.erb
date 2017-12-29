@@ -22,9 +22,9 @@
 
   <p>Condition Status:<br>
     <input type="radio" name="item[condition_status]" value="Good" <%='checked' if @item.condition_status == "Good"%>> Good<br>
-    <input type="radio" name="item[condition_status]" value="Clean" <%='checked' if @item.condition_status == "Clean"%>> Needs Cleaning<br>
-    <input type="radio" name="item[condition_status]" value="Repair" <%='checked' if @item.condition_status == "Repair"%>> Needs Repair<br>
-    <input type="radio" name="item[condition_status]" value="Replace" <%='checked' if @item.condition_status == "Replace"%>> Needs Replacement/Restock<br>
+    <input type="radio" name="item[condition_status]" value="Needs Cleaning" <%='checked' if @item.condition_status == "Needs Cleaning"%>> Needs Cleaning<br>
+    <input type="radio" name="item[condition_status]" value="Needs Repair" <%='checked' if @item.condition_status == "Needs Repair"%>> Needs Repair<br>
+    <input type="radio" name="item[condition_status]" value="Needs Replacement" <%='checked' if @item.condition_status == "Needs Replacement"%>> Needs Replacement<br>
     <input type="radio" name="item[condition_status]" value="Lost" <%='checked' if @item.condition_status == "Lost"%>> Lost</p>
 
   <p>Condition Notes: <input type="text" name="item[condition_notes]"></p>
