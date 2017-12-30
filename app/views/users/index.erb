@@ -1,4 +1,21 @@
-<h1>Welcome, <%= @user.name %>!</h1>
-<p><a href="/users/edit">Edit your account information.</a></p>
+<div class="container inside-wrapper">
+  <div class="row inside-header">
+    <h1>Welcome, <%= @user.name %>!</h1>
+  </div>
 
-<p>Your stuff will go here.</p>
+  <div class="row inside-nav">
+    <%= erb :nav %>
+  </div>
+
+  <div class="row inside-content">
+    <div class="col-sm info-box">
+      First col here
+    </div>
+    <div class="col-sm info-box">
+      Second col here
+    </div>
+    <div class="col-sm info-box">
+      Third col here
+    </div>
+  </div>
+<div>
