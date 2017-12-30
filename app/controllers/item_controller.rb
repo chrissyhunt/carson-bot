@@ -13,8 +13,8 @@ class ItemController < ApplicationController
   get '/items/new' do
     if logged_in?
       @user = current_user
-      @locations = Location.collect {|location| location.admin_lock || current_user.locations.include?(location)}
-      @categories = Category.collect {|category| category.admin_lock || current_user.categories.include?(category)}
+      @locations = Location.all
+      @categories = Category.all
       erb :'items/create'
     else
       redirect to '/users/login'

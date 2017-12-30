@@ -1,8 +1,29 @@
-html, body, h1, h2, h3, p {
+html, body {
+  padding: 0;
+  margin: 0;
   font-family: 'avenir next', avenir, roboto, noto, ubuntu, 'helvetica neue', helvetica, arial, sans-serif;
+  font-weight: 300;
 }
 
-div.welcome-wrapper, div.inside-wrapper {
+strong {
+  font-weight: 500;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.6em;
+}
+
+div.jumbotron {
+  padding: none;
+  background-color: #FFDC00;
+  background-image: url("../media/carson-bot-logo-bw.png");
+  background-size: auto 100%;
+  background-position: 5% 0%;
+  background-repeat: no-repeat;
+}
+
+div.welcome-wrapper {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -11,10 +32,16 @@ div.welcome-wrapper, div.inside-wrapper {
   width: 70%;
 }
 
-div.inside-header {
-  width: 100%;
+div.inside-wrapper {
   text-align: center;
-  background-color: #FFDC00;
+  width: 100%;
+  margin: 0;
+}
+
+div.inside-header {
+  width: 70%;
+  margin: 1% auto;
+  text-align: center;
   color: #FFFFFF;
   padding: 2%;
   display: block;
@@ -23,21 +50,27 @@ div.inside-header {
 div.inside-content {
   width: 100%;
   text-align: center;
+  margin: auto;
 }
 
 div.inside-nav {
-  width: 100%;
+  width: 80%;
+  margin: 1% auto;
+}
+
+div.inside-nav ul {
+  text-align: center;
+  margin: auto;
+}
+
+div.inside-nav li {
   background-color: #7FDBFF;
   color: #FFFFFF;
   text-shadow: 1px 1px #AAA;
   text-align: center;
   font-size: 0.8em;
   letter-spacing: 1px;
-}
-
-div.inside-nav ul {
-  text-align: center;
-  margin: auto;
+  margin: 2px;
 }
 
 div.inside-nav li:hover {
@@ -53,6 +86,34 @@ div.inside-nav a {
 div.info-box {
   text-align: left;
   padding: 2%;
+  border-right: 1px solid #e9ecef;
+}
+
+div.info-box h4 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1em;
+  font-weight: 600;
+  padding-bottom: 2%;
+}
+
+div.info-box p, li {
+  font-size: 1em;
+}
+
+div.info-box a {
+  color: #000;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+div.info-box a:hover {
+  color: #F012BE;
+  text-decoration: underline;
+}
+
+div.col-right {
+  border: none;
 }
 
 div.welcome-header img {
@@ -82,9 +143,10 @@ div.info {
   width: 60%;
   transform: translate(-50%, -50%);
   text-align: center;
+  font-size: 0.9em;
 }
 
-div.info label {
+div.info label{
   text-shadow: 1px 1px #AAA;
   text-transform: uppercase;
   font-weight: bold;
@@ -158,6 +220,7 @@ div.welcome-text a {
   font-weight: bold;
   letter-spacing: 1px;
   text-shadow: 1px 1px #AAA;
+  font-size: 0.9em;
 }
 
 div.welcome-text a:hover {
@@ -170,6 +233,7 @@ div.welcome-text h1, div.info h1, div.inside-header h1 {
   font-size: 280%;
   text-shadow: 1px 1px #AAA;
   padding: 0.8%;
+  font-weight: 600;
 }
 
 div.welcome-text h3, div.info h3, div.inside-header h3 {

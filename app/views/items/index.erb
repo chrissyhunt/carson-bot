@@ -1,13 +1,14 @@
-<div class="container inside-wrapper">
+<div class="jumbotron">
+    <div class="inside-header">
+      <h1><%=@user.name%>'s Home Inventory</h1>
+    </div>
 
-  <div class="row inside-header">
-    <h1><%=@user.name%>'s Home Inventory</h1>
-  </div>
+    <div class="inside-nav">
+      <%= erb :nav %>
+    </div>
+</div>
 
-  <div class="row inside-nav">
-    <%= erb :nav %>
-  </div>
-
+<div class="container-fluid">
   <div class="row inside-content">
 
     <div class="col-sm-8 info-box">

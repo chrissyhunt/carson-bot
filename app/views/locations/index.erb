@@ -1,15 +1,15 @@
-<div class="container inside-wrapper">
-
-  <div class="row inside-header">
+<div class="jumbotron">
+  <div class="inside-header">
     <h1><%=@user.name%>'s Items by Location</h1>
   </div>
 
-  <div class="row inside-nav">
+  <div class="inside-nav">
     <%= erb :nav %>
   </div>
+</div>
 
+<div class="container-fluid">
   <div class="row inside-content">
-
     <div class="col-sm-8 info-box">
       <% @user_locations.each do |location| %>
       <h4><a href="/locations/<%=location.id%>"><%=location.name%></a> (<a href="/locations/<%=location.id%>/edit">edit</a>)</h4>

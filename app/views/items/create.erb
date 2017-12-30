@@ -1,50 +1,105 @@
-<h1>Add an Item</h1>
-<form action="/items/new" method="post">
-  <input type="hidden" name="item[user_id]" value="<%=@user.id%>">
-  <p>Item Name: <input type="text" name="item[name]"></p>
-  <p>Item Category:<br>
-    <% @categories.each do |category| %>
-      <input type="radio" name="item[category_id]" value="<%=category.id%>"> <%=category.name%><br>
-    <% end %></p>
+<div class="container inside-wrapper">
+  <div class="row inside-header">
+    <h1>Add a New Item</h1>
+  </div>
 
-  <p>Or create a new item category: <input type="text" name="item_category"></p>
+  <div class="row inside-nav">
+    <%= erb :nav %>
+  </div>
 
-  <p>Current Location:<br>
-    <% @locations.each do |location| %>
-      <input type="radio" name="item[location_id]" value="<%=location.id%>"> <%=location.name%><br>
-    <% end %></p>
+  <div class="row inside-content">
+    <div class="info-box">
+      <form action="/items/new" method="post">
+        <input type="hidden" name="item[user_id]" value="<%=@user.id%>">
 
-  <p>Or create a new location: <input type="text" name="location_name"></p>
+        <div class="form-group row">
+          <label for="item_name" class="col-sm-2 col-form-label">Item Name:</label>
+          <div class="col-sm-10">
+            <input id="item_name" type="text" name="item[name]">
+          </div>
+        </div>
 
-  <p>Is this item perishable?<br>
-  <p><input type="radio" name="item[perishable]" value="true"> Yes
-    <input type="radio" name="item[perishable]" value="false"> No</p>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Item Category:</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <% @categories.each do |category| %>
+                  <input id="category_radios" class="form-check-input" type="radio" name="item[category_id]" value="<%=category.id%>"><label class="form-check-label" for="category_radios"><%=category.name%></label><br>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </fieldset>
 
-  <p>Condition Status:<br>
-    <input type="radio" name="item[condition_status]" value="Good"> Good<br>
-    <input type="radio" name="item[condition_status]" value="Needs Cleaning"> Needs Cleaning<br>
-    <input type="radio" name="item[condition_status]" value="Needs Repair"> Needs Repair<br>
-    <input type="radio" name="item[condition_status]" value="Needs Replacement"> Needs Replacement<br>
-    <input type="radio" name="item[condition_status]" value="Lost"> Lost</p>
+        <div class="form-group row">
+          <label for="new_category" class="col-sm-2 col-form-label">Or create a new category:</label>
+          <div class="col-sm-10">
+            <input id="new_category" type="text" name="item_category">
+          </div>
+        </div>
 
-  <p>Condition Notes: <input type="text" name="item[condition_notes]"></p>
-  <p>Warranty or Registration Code: <input type="text" name="item[registration_code]"></p>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Current Location:</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <% @locations.each do |location| %>
+                  <input id="location_radios" type="radio" name="item[location_id]" value="<%=location.id%>"><label class="form-check-label" for="location_radios"><%=location.name%></label><br>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </fieldset>
 
-  <p>Replacement Value: $<input type="number" name="item[value]"></p>
+        <div class="form-group row">
+          <label for="new_location" class="col-sm-2 col-form-label">Or create a new location:</label>
+          <div class="col-sm-10">
+            <input id="new_location" type="text" name="location_name">
+          </div>
+        </div>
 
-  <p>Approximate Size:<br>
-    <input type="radio" name="item[size]" value="Small"> Small<br>
-    <input type="radio" name="item[size]" value="Medium"> Medium<br>
-    <input type="radio" name="item[size]" value="Large"> Large</p>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Is this item perishable?</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input id="perishable1" type="radio" name="item[perishable]" value="true"> <label class="form-check-label" for="perishable1">Yes</label>
+                <input id="perishable2" type="radio" name="item[perishable]" value="false"> <label class="form-check-label" for="perishable2">No</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
 
-  <p>Approximate Weight:<br>
-    <input type="radio" name="item[weight]" value="Light"> Light (less than 30 lbs.)<br>
-    <input type="radio" name="item[weight]" value="Heavy"> Heavy (1-person lift)<br>
-    <input type="radio" name="item[weight]" value="Very Heavy"> Very Heavy (2+ person lift)</p>
 
-  <p>Date Acquired: <input type="date" name="item[date_acquired]"></p>
+        <p>Condition Status:<br>
+          <input type="radio" name="item[condition_status]" value="Good"> Good<br>
+          <input type="radio" name="item[condition_status]" value="Needs Cleaning"> Needs Cleaning<br>
+          <input type="radio" name="item[condition_status]" value="Needs Repair"> Needs Repair<br>
+          <input type="radio" name="item[condition_status]" value="Needs Replacement"> Needs Replacement<br>
+          <input type="radio" name="item[condition_status]" value="Lost"> Lost</p>
 
-  <p>Source: <input type="text" name="item[source]"></p>
+        <p>Condition Notes: <input type="text" name="item[condition_notes]"></p>
+        <p>Warranty or Registration Code: <input type="text" name="item[registration_code]"></p>
 
-  <input type="submit" value="Create Item">
-</form>
+        <p>Replacement Value: $<input type="number" name="item[value]"></p>
+
+        <p>Approximate Size:<br>
+          <input type="radio" name="item[size]" value="Small"> Small<br>
+          <input type="radio" name="item[size]" value="Medium"> Medium<br>
+          <input type="radio" name="item[size]" value="Large"> Large</p>
+
+        <p>Approximate Weight:<br>
+          <input type="radio" name="item[weight]" value="Light"> Light (less than 30 lbs.)<br>
+          <input type="radio" name="item[weight]" value="Heavy"> Heavy (1-person lift)<br>
+          <input type="radio" name="item[weight]" value="Very Heavy"> Very Heavy (2+ person lift)</p>
+
+        <p>Date Acquired: <input type="date" name="item[date_acquired]"></p>
+
+        <p>Source: <input type="text" name="item[source]"></p>
+
+        <input type="submit" value="Create Item">
+      </form>
+    </div>
+  </div>
+</div>
