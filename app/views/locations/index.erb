@@ -1,13 +1,29 @@
-<h1><%=@user.name%>'s Items by Location</h1>
+<div class="container inside-wrapper">
 
-<% @user_locations.each do |location| %>
+  <div class="row inside-header">
+    <h1><%=@user.name%>'s Items by Location</h1>
+  </div>
 
-<h3><a href="/locations/<%=location.id%>"><%=location.name%></a> (<a href="/locations/<%=location.id%>/edit">edit</a>)</h3>
+  <div class="row inside-nav">
+    <%= erb :nav %>
+  </div>
 
-  <ul>
-    <% location.items.each do |item| %>
-      <li><%=item.name if @user.items.include?(item)%></li>
-    <% end %>
-  </ul>
+  <div class="row inside-content">
 
-<% end %>
+    <div class="col-sm-8 info-box">
+      <% @user_locations.each do |location| %>
+      <h4><a href="/locations/<%=location.id%>"><%=location.name%></a> (<a href="/locations/<%=location.id%>/edit">edit</a>)</h4>
+        <ul>
+          <% location.items.each do |item| %>
+            <li><%=item.name if @user.items.include?(item)%></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+    <div class="col-sm-4 info-box">
+      <h4>Sidebar</h4>
+    </div>
+
+  </div>
+</div>
