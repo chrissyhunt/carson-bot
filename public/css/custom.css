@@ -2,6 +2,15 @@ html, body, h1, h2, h3, p {
   font-family: 'avenir next', avenir, roboto, noto, ubuntu, 'helvetica neue', helvetica, arial, sans-serif;
 }
 
+div.welcome-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
 img#welcome-header {
   width: 70%;
   margin: auto;
@@ -12,13 +21,51 @@ div.welcome-header {
   text-align: center;
 }
 
-div.welcome-text {
+div.welcome-text, div.info {
   margin-top: 1%;
   padding: 2%;
   width: 75%;
   text-align: center;
   background-color: #FFDC00;
   color: #FFFFFF;
+}
+
+div.info {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+div.info label {
+  text-shadow: 1px 1px #AAA;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+div.info input {
+  width: 50%;
+  padding: 0.8%;
+  background-color: #7FDBFF;
+  color: #FFFFFF;
+  text-shadow: 1px 1px #AAA;
+  border: none;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+input.submit {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+input.submit:hover {
+  background-color: #F012BE;
+  text-decoration: none;
+  text-shadow: none;
 }
 
 div.welcome-text a {
@@ -37,12 +84,16 @@ div.welcome-text a:hover {
   text-shadow: none;
 }
 
-div.welcome-text h1 {
+div.welcome-text h1, div.info h1 {
   font-size: 280%;
   text-shadow: 1px 1px #AAA;
   padding: 0.8%;
 }
 
-div.welcome-text p {
+dif.info h1 {
+  text-align: center;
+}
+
+div.welcome-text p, div.info p {
   padding: 0.8%;
 }

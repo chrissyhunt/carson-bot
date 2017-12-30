@@ -1,7 +1,15 @@
-<h1>Sign up for a new account</h1>
-<form action="/users/signup" method="post">
-  <p>Your Name: <input type="text" name="user[name]"></p>
-  <p>Your Email: <input type="text" name="user[email]"></p>
-  <p>Choose a Secure Password: <input type="text" name="user[password]"></p>
-  <input type="submit" value="Sign Up">
-</form>
+<div class="container info">
+  <h1>Create a New Account</h1>
+  <form action="/users/signup" method="post">
+    <p><label id="user_name">Your Name:</label><br>
+      <input type="text" name="user[name]"></p>
+
+    <p><label id="user_email">Your Email:</label><br>
+      <input type="text" name="user[email]"></p>
+
+    <p><label id="user_password">Choose a Secure Password:</label><br>
+      <input type="text" name="user[password]"></p>
+
+    <p><input class="submit" type="submit" value="Sign Up"></p>
+  </form>
+</div>
