@@ -1,6 +1,8 @@
 <div class="container inside-wrapper">
+
   <div class="row inside-header">
-    <h1>Welcome, <%= @user.name %>!</h1>
+    <h1>Welcome home, <%= @user.name %>!</h1>
+    <h3>How may I help today?</h3>
   </div>
 
   <div class="row inside-nav">
@@ -8,14 +10,18 @@
   </div>
 
   <div class="row inside-content">
-    <div class="col-sm info-box">
-      First col here
+    <div class="col-sm-8 info-box">
+      <h4>Household Summary</h4>
+      <p>You have <strong><%= @user.items.count %> items</strong> in <strong><%= @user.categories.count %> categories</strong> and <strong><%= @user.locations.count %> locations</strong>.</p>
+      <p>You most recently added <strong><%= @user.items.last.name %></strong>.</p>
     </div>
-    <div class="col-sm info-box">
-      Second col here
-    </div>
-    <div class="col-sm info-box">
-      Third col here
-    </div>
+
+    <div class="col-sm-4 info-box">
+      <h4>To Do Lists</h4>
+      <p>You have items on <strong>X lists</strong>, including:</p>
+      <ul>
+        <li>Shopping List</li>
+        <li>Drycleaning</li>
+      </ul>
   </div>
 <div>
