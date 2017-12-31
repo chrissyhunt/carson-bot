@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <div class="inside-header">
-    <h1>Here are your items.</h1>
+    <h1>Here is your <%=@location.name.downcase%>, <%=@user.name%>.</h1>
   </div>
 
   <div class="inside-nav">
@@ -10,18 +10,24 @@
 
 <div class="container">
   <div class="row inside-content">
-    <div class="col-sm-8 info-box">
-      <h4><%=@location.name%></h4>
+    <div class="col-sm info-box">
+      <h4><%=@location.name%> Summary</h4>
+      <p>You have <%=@location.items.count%> items in your <%=@location.name.downcase%>.</p>
 
-      <p>
+      <% if !@location.admin_lock %>
+        <p><a href="/locations/<%=@location.id%>/edit">Edit this location</a></p>
+      <% end %>
+      <p><a href="/locations">Return to all locations</a></p>
+    </div>
+    <div class="col-sm info-box">
+      <h4><%=@location.name%> Inventory</h4>
+
         <% @user_items.each do |item| %>
           <% if @location.items.include?(item) %>
-            <a href="/items/<%=item.id%>"><%=item.name%></a><br>
+            <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
+              <span class="location"><%=item.size%> <%=item.category.name%>, <%=item.weight%></span></p>
           <% end %>
         <% end %>
-      </p>
-
-      <p><a href="/locations">Return to all locations</a></p>
     </div>
 
     <div class="col-sm info-box col-right">

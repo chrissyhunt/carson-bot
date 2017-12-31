@@ -11,8 +11,9 @@ class LocationController < ApplicationController
   end
 
   get '/locations/:id' do
+    @user = current_user
     @location = Location.find_by(id: params[:id])
-    @user_items = current_user.items
+    @user_items = current_user.items.sort_by {|item| item.name}
     if logged_in? && current_user.locations.include?(@location)
       erb :'locations/show'
     else
