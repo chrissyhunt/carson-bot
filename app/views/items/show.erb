@@ -1,16 +1,36 @@
-<h1><%=@item.name%></h1>
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>Here is your <%=@item.name%>.</h1>
+  </div>
 
-<p>Location: <%=@item.location.name%></p>
-<p>Category: <%=@item.category.name%></p>
-<p>Perishable: <%='Yes' if !!@item.perishable%> <%='No' if !@item.perishable%></p>
-<p>Condition Status: <%=@item.condition_status%></p>
-<p>Condition Notes: <%=@item.condition_notes%></p>
-<p>Registration Code: <%=@item.registration_code%></p>
-<p>Replacement Value: $<%=@item.value%></p>
-<p>Size: <%=@item.size%></p>
-<p>Weight: <%=@item.weight%></p>
-<p>Date Acquired: <%=@item.date_acquired%></p>
-<p>Source: <%=@item.source%></p>
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
 
-<p><a href="/items/<%=@item.id%>/edit">Edit this item</a></p>
-<p><a href="/items">Back to all items</a></p>
+<div class="container">
+  <div class="row inside-content">
+
+    <div class="col-sm-8 info-box">
+      <h4><%=@item.name%></h4>
+      <p>Location: <%=@item.location.name%></p>
+      <p>Category: <%=@item.category.name%></p>
+      <p>Perishable: <%='Yes' if !!@item.perishable%> <%='No' if !@item.perishable%></p>
+      <p>Condition Status: <%=@item.condition_status%></p>
+      <p>Condition Notes: <%=@item.condition_notes%></p>
+      <p>Registration Code: <%=@item.registration_code%></p>
+      <p>Replacement Value: $<%=@item.value%></p>
+      <p>Size: <%=@item.size%></p>
+      <p>Weight: <%=@item.weight%></p>
+      <p>Date Acquired: <%=@item.date_acquired%></p>
+      <p>Source: <%=@item.source%></p>
+
+      <p><a href="/items/<%=@item.id%>/edit">Edit this item</a></p>
+      <p><a href="/items">Back to all items</a></p>
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+  </div>
+</div>
