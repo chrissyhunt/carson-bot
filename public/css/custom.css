@@ -23,6 +23,17 @@ div.jumbotron {
   background-repeat: no-repeat;
 }
 
+div.long-list {
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+  column-fill: balance;
+}
+
+div.long-list div {
+  break-inside: avoid-column;
+}
+
 div.welcome-wrapper {
   position: absolute;
   left: 50%;

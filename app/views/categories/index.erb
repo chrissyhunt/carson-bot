@@ -12,14 +12,16 @@
   <div class="row inside-content">
     <div class="col-sm-8 info-box">
       <h4>Inventory by Category</h4>
-      <% @user_categories.each do |category| %>
-      <p><a href="/categories/<%=category.id%>"><%=category.name%></a> (<a href="/categories/<%=category.id%>/edit">edit</a>)</p>
-        <ul>
-          <% category.items.each do |item| %>
-            <li><%=item.name if @user.items.include?(item)%></li>
-          <% end %>
-        </ul>
-      <% end %>
+      <div class="long-list">
+        <% @user_categories.each do |category| %>
+        <div><p><a href="/categories/<%=category.id%>"><%=category.name%></a> (<a href="/categories/<%=category.id%>/edit">edit</a>)</p>
+          <ul>
+            <% category.items.each do |item| %>
+              <li><%=item.name if @user.items.include?(item)%></li>
+            <% end %>
+          </ul></div>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-sm info-box col-right">

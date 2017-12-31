@@ -13,11 +13,13 @@
 
     <div class="col-sm-8 info-box">
       <h4>Complete Home Inventory</h4>
-      <% @user_items.each do |item| %>
-        <p><strong><%=item.name%></strong><br>
-          <strong>Location:</strong> <%=item.location.name%><br>
-          <a href="/items/<%=item.id%>">View more information</a></p>
-      <% end %>
+      <div class="long-list">
+        <% @user_items.each do |item| %>
+          <div><p><strong><%=item.name%></strong><br>
+            <strong>Location:</strong> <%=item.location.name%><br>
+            <a href="/items/<%=item.id%>">View more information</a></p></div>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-sm info-box col-right">
