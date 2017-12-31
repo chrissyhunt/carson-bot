@@ -15,14 +15,14 @@
       <h4>Inventory by Location</h4>
       <div class="long-list">
         <% @user_locations.each do |location| %>
-        <div>
-          <p><a href="/locations/<%=location.id%>"><%=location.name%></a> (<a href="/locations/<%=location.id%>/edit">edit</a>)</p>
-            <ul>
-              <% location.items.each do |item| %>
-                <li><%=item.name if @user.items.include?(item)%></li>
-              <% end %>
-            </ul></div>
-          <% end %>
+          <div>
+            <p class="category"><a href="/locations/<%=location.id%>"><%=location.name%></a></p>
+                <% location.items.each do |item| %>
+                  <p><a href="/items/<%=item.id%>"><%=item.name if @user.items.include?(item)%></a><br>
+                  <span class="location"><%=item.category.name%></span></p>
+                <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
 

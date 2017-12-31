@@ -123,6 +123,27 @@ div.info-box a:hover {
   text-decoration: underline;
 }
 
+div.info-box span.location {
+  color: #AAA;
+  font-size: 0.8em;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: relative;
+  top: -4px;
+}
+
+div.info-box p.category {
+  background-color: #DDD;
+  padding: 2px 4px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+div.info-box p.category a:hover {
+  color: #FFFFFF;
+}
+
 div.form-group input[type^="text"],
 div.form-group input[type^="number"],
 div.form-group input[type^="date"],

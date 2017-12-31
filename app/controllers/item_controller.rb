@@ -13,8 +13,8 @@ class ItemController < ApplicationController
   get '/items/new' do
     if logged_in?
       @user = current_user
-      @locations = Location.all
-      @categories = Category.all
+      @locations = Location.all.select {|location| location.admin_lock || @user.locations.include?(location)}
+      @categories = Category.all.select {|category| category.admin_lock || @user.categories.include?(category)}
       erb :'items/create'
     else
       redirect to '/users/login'
@@ -49,8 +49,8 @@ class ItemController < ApplicationController
 
   get '/items/:id/edit' do
     @user = current_user
-    @locations = Location.all
-    @categories = Category.all
+    @locations = Location.all.select {|location| location.admin_lock || @user.locations.include?(location)}
+    @categories = Category.all.select {|category| category.admin_lock || @user.categories.include?(category)}
     @item = Item.find_by(id: params[:id])
     if logged_in? && @item.user_id == current_user.id
       erb :'items/edit'

@@ -14,12 +14,15 @@
       <h4>Inventory by Category</h4>
       <div class="long-list">
         <% @user_categories.each do |category| %>
-        <div><p><a href="/categories/<%=category.id%>"><%=category.name%></a> (<a href="/categories/<%=category.id%>/edit">edit</a>)</p>
-          <ul>
+        <div>
+          <p class="category"><a href="/categories/<%=category.id%>"><%=category.name%></a></p>
             <% category.items.each do |item| %>
-              <li><%=item.name if @user.items.include?(item)%></li>
+              <div>
+                <p><a href="/items/<%=item.id%>"><%=item.name if @user.items.include?(item)%></a><br>
+                  <span class="location">In the <%=item.location.name%><br></span></p>
+              </div>
             <% end %>
-          </ul></div>
+        </div>
         <% end %>
       </div>
     </div>
