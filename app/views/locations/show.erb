@@ -13,9 +13,13 @@
     <div class="col-sm-8 info-box">
       <h4><%=@location.name%></h4>
 
-      <% @user_items.each do |item| %>
-        <%=item.name if @location.items.include?(item)%><br>
-      <% end %>
+      <p>
+        <% @user_items.each do |item| %>
+          <% if @location.items.include?(item) %>
+            <a href="/items/<%=item.id%>"><%=item.name%></a><br>
+          <% end %>
+        <% end %>
+      </p>
 
       <p><a href="/locations">Return to all locations</a></p>
     </div>

@@ -144,6 +144,22 @@ div.info-box p.category a:hover {
   color: #FFFFFF;
 }
 
+div.display-row {
+  margin: 1% 0;
+  border-bottom: 1px solid #DDD;
+  padding: 2% 0;
+}
+
+div.display-row:last-of-type {
+  margin-bottom: 5%;
+}
+
+div.display-label {
+  padding: 0;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
 div.form-group input[type^="text"],
 div.form-group input[type^="number"],
 div.form-group input[type^="date"],
