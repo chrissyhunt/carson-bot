@@ -1,7 +1,27 @@
-<h1><%=@location.name%></h1>
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>Here are your items.</h1>
+  </div>
 
-<% @user_items.each do |item| %>
-  <%=item.name if @location.items.include?(item)%><br>
-<% end %>
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
 
-<a href="/locations">Return to all locations</a>
+<div class="container">
+  <div class="row inside-content">
+    <div class="col-sm-8 info-box">
+      <h4><%=@location.name%></h4>
+
+      <% @user_items.each do |item| %>
+        <%=item.name if @location.items.include?(item)%><br>
+      <% end %>
+
+      <p><a href="/locations">Return to all locations</a></p>
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+  </div>
+</div>
