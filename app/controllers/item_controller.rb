@@ -23,13 +23,13 @@ class ItemController < ApplicationController
 
   post '/items/new' do
     item = Item.create(params[:item])
-    if params[:location_name] != ""
-      new_location = Location.create(name: params[:location_name])
+    if params[:item_location] != ""
+      new_location = Location.create(name: params[:item_location], admin_lock: false)
       item.location_id = new_location.id
     end
 
     if params[:item_category] != ""
-      new_category = Category.create(name: params[:item_type])
+      new_category = Category.create(name: params[:item_type], admin_lock: false)
       item.category_id = new_category.id
     end
 
@@ -62,13 +62,13 @@ class ItemController < ApplicationController
   post '/items/:id/edit' do
     item = Item.find_by(id: params[:id])
     item.update(params[:item])
-    if params[:location_name] != ""
-      new_location = Location.create(name: params[:location_name])
+    if params[:item_location] != ""
+      new_location = Location.create(name: params[:item_location], admin_lock: false)
       item.location_id = new_location.id
     end
 
     if params[:item_category] != ""
-      new_category = Category.create(name: params[:item_type])
+      new_category = Category.create(name: params[:item_category], admin_lock: false)
       item.category_id = new_category.id
     end
 

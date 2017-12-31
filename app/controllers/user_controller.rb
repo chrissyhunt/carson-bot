@@ -14,7 +14,7 @@ class UserController < ApplicationController
   end
 
   post '/users/signup' do
-    if params[:user][:name] != "" && params[:user][:email] != "" && params[:user][:password] != "" && !User.find_by(email: params[:email][:password])
+    if params[:user][:name] != "" && params[:user][:email] != "" && params[:user][:password] != "" && !User.find_by(email: params[:user][:email])
       new_user = User.create(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
       if new_user.save
         session[:user_id] = new_user.id

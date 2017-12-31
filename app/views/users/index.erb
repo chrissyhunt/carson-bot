@@ -12,8 +12,12 @@
   <div class="row inside-content">
     <div class="col-sm info-box">
       <h4>Summary</h4>
-      <p>You have <a href="/items"><%= @user.items.count %> items</a> in <a href="/categories"><%= @user.categories.count %> categories</a> and <a href="/locations"><%= @user.locations.count %> locations</a>.</p>
-      <p>You most recently added <a href="/items/<%=@user.items.last.id%>"><%= @user.items.last.name %></a>.</p>
+      <% if @user.items.empty? %>
+        <p>You don't have any items yet! <a href="/items/new">Add an item to your home inventory.</a></p>
+      <% else %>
+        <p>You have <a href="/items"><%= @user.items.count %> items</a> in <a href="/categories"><%= @user.categories.uniq.count %> categories</a> and <a href="/locations"><%= @user.locations.uniq.count %> locations</a>.</p>
+        <p>You most recently added <a href="/items/<%=@user.items.last.id%>"><%= @user.items.last.name %></a>.</p>
+      <% end %>
     </div>
 
     <div class="col-sm info-box">
