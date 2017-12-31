@@ -3,7 +3,7 @@ class LocationController < ApplicationController
   get '/locations' do
     if logged_in?
       @user = current_user
-      @user_locations = current_user.locations.uniq
+      @user_locations = current_user.locations.uniq.sort_by {|location| location.name}
       erb :'/locations/index'
     else
       redirect to '/users/login'

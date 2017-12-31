@@ -3,7 +3,7 @@ class CategoryController < ApplicationController
   get '/categories' do
     if logged_in?
       @user = current_user
-      @user_categories = current_user.categories.uniq
+      @user_categories = current_user.categories.uniq.sort_by {|category| category.name}
       erb :'categories/index'
     else
       redirect to '/users/login'
