@@ -1,15 +1,42 @@
-<h1>Edit a Location</h1>
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>Let's update this location.</h1>
+  </div>
 
-<% if !@location.admin_lock %>
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
 
-  <form action="/locations/<%=@location.id%>/edit" method="post">
-    <input type="hidden" name="location[admin_lock]" value="false">
-    <p>Name: <input type="text" name="location[name]" value="<%=@location.name%>"></p>
-    <input type="submit" value="Edit Location">
-  </form>
+<div class="container">
+  <div class="row inside-content">
+    <div class="col-sm-8 info-box">
+      <h4>Edit <%=@location.name%></h4>
+      <% if !@location.admin_lock %>
 
-<% else %>
+        <form action="/locations/<%=@location.id%>/edit" method="post">
+          <input type="hidden" name="location[admin_lock]" value="false">
 
-  <p>This location is a default location and cannot be edited. <a href="/locations">Select something else from the list.</a></p>
+          <div class="row form-group">
+            <div class="col-sm-3"><label for="location_name">Name:</label></div>
+            <div class="col-sm-9"><input id="location_name" type="text" name="location[name]" value="<%=@location.name%>"></div>
+          </div>
 
-<% end %>
+          <div class="row form-group">
+            <input type="submit" value="Edit Location">
+          </div>
+        </form>
+
+      <% else %>
+
+        <p>This location is a default location and cannot be edited. <a href="/locations">Select something else from the list.</a></p>
+
+      <% end %>
+
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+  </div>
+</div>

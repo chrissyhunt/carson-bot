@@ -1,7 +1,42 @@
-<h1>Update Your Account Information</h1>
-<form action="/users/edit" method="post">
-  <p>Your Name: <input type="text" name="user[name]" value="<%=@user.name%>"></p>
-  <p>Your Email: <input type="text" name="user[email]" value="<%=@user.email%>"></p>
-  <p>Your Password: <input type="text" name="user[password]" value="<%=@user.password%>"></p>
-  <input type="submit" value="Submit">
-</form>
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>Let's update your information.</h1>
+  </div>
+
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row inside-content">
+    <div class="col-sm-8 info-box">
+      <h4>Update Your Account Information</h4>
+      <form action="/users/edit" method="post">
+
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="user_name">Your Name:</label></div>
+          <div class="col-sm-9"><input type="text" name="user[name]" value="<%=@user.name%>"></div>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="user_email">Your Email:</label></div>
+          <div class="col-sm-9"><input type="text" name="user[email]" value="<%=@user.email%>"></div>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="user_password">Your Password:</label></div>
+          <div class="col-sm-9"><input type="text" name="user[password]" value="<%=@user.password%>"></div>
+        </div>
+
+        <div class="row form-group">
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+  </div>
+</div>

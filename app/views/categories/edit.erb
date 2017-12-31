@@ -1,15 +1,41 @@
-<h1>Edit a Category</h1>
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>Let's update this category.</h1>
+  </div>
 
-<% if !@category.admin_lock %>
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
 
-  <form action="/categories/<%=@category.id%>/edit" method="post">
-    <input type="hidden" name="category[admin_lock]" value="false">
-    <p>Name: <input type="text" name="category[name]" value="<%=@category.name%>"></p>
-    <input type="submit" value="Edit Category">
-  </form>
+<div class="container">
+  <div class="row inside-content">
+    <div class="col-sm-8 info-box">
+      <h4>Edit <%=@category.name%></h4>
+      <% if !@category.admin_lock %>
 
-<% else %>
+        <form action="/categories/<%=@category.id%>/edit" method="post">
+          <input type="hidden" name="category[admin_lock]" value="false">
 
-  <p>This category is a default category and cannot be edited. <a href="/categories">Select something else from the list.</a></p>
+          <div class="row form-group">
+            <div class="col-sm-3"><label for="category_name">Name:</label></div>
+            <div class="col-sm-9"><input id="category_name" type="text" name="category[name]" value="<%=@category.name%>"></div>
+          </div>
 
-<% end %>
+          <div class="row form-group">
+            <input type="submit" value="Edit Category">
+          </div>
+        </form>
+
+      <% else %>
+
+        <p>This is a default category and cannot be edited. <a href="/categories">Select something else from the list.</a></p>
+
+      <% end %>
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+  </div>
+</div>
