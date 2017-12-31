@@ -1,105 +1,128 @@
-<div class="container inside-wrapper">
-  <div class="row inside-header">
-    <h1>Add a New Item</h1>
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>I can track that for you.</h1>
   </div>
 
-  <div class="row inside-nav">
+  <div class="inside-nav">
     <%= erb :nav %>
   </div>
+</div>
 
+
+<div class="container">
   <div class="row inside-content">
-    <div class="info-box">
+    <div class="col-sm-8 info-box">
+      <h4>Add a New Item</h4>
       <form action="/items/new" method="post">
         <input type="hidden" name="item[user_id]" value="<%=@user.id%>">
 
-        <div class="form-group row">
-          <label for="item_name" class="col-sm-2 col-form-label">Item Name:</label>
-          <div class="col-sm-10">
-            <input id="item_name" type="text" name="item[name]">
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="item_name">Item Name:</label></div>
+          <div class="col-sm-9"><input id="item_name" type="text" name="item[name]"></div>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-sm-3">Category:</div>
+          <div class="col-sm-9">
+            <select name="item[category_id]">
+              <option value="">SELECT CATEGORY</option>
+              <% @categories.each do |category| %>
+                <option value="<%=category.id%>"><%=category.name%></option>
+              <% end %>
+            </select><br>
+            <input id="new_category" type="text" name="item_category" placeholder="Or Create a New Category"></p>
           </div>
         </div>
 
-        <fieldset class="form-group">
-          <div class="row">
-            <legend class="col-form-label col-sm-2 pt-0">Item Category:</legend>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <% @categories.each do |category| %>
-                  <input id="category_radios" class="form-check-input" type="radio" name="item[category_id]" value="<%=category.id%>"><label class="form-check-label" for="category_radios"><%=category.name%></label><br>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-
-        <div class="form-group row">
-          <label for="new_category" class="col-sm-2 col-form-label">Or create a new category:</label>
-          <div class="col-sm-10">
-            <input id="new_category" type="text" name="item_category">
+        <div class="row form-group">
+          <div class="col-sm-3">Location:</div>
+          <div class="col-sm-9">
+            <select name="item[location_id]">
+                <option value="">SELECT LOCATION</option>
+              <% @locations.each do |location| %>
+                <option value="<%=location.id%>"><%=location.name%></option>
+              <% end %>
+            </select><br>
+            <input id="new_location" type="text" name="item_location" placeholder="Or Create a New Location">
           </div>
         </div>
 
-        <fieldset class="form-group">
-          <div class="row">
-            <legend class="col-form-label col-sm-2 pt-0">Current Location:</legend>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <% @locations.each do |location| %>
-                  <input id="location_radios" type="radio" name="item[location_id]" value="<%=location.id%>"><label class="form-check-label" for="location_radios"><%=location.name%></label><br>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-
-        <div class="form-group row">
-          <label for="new_location" class="col-sm-2 col-form-label">Or create a new location:</label>
-          <div class="col-sm-10">
-            <input id="new_location" type="text" name="location_name">
+        <div class="row form-group">
+          <div class="col-sm-3">Perishable?</div>
+          <div class="col-sm-9">
+            <input id="perishable1" type="radio" name="item[perishable]" value="true"> <label for="perishable1" class="radio_label">Yes</label>
+            <input id="perishable2" type="radio" name="item[perishable]" value="false"> <label for="perishable2" class="radio_label">No</label>
           </div>
         </div>
 
-        <fieldset class="form-group">
-          <div class="row">
-            <legend class="col-form-label col-sm-2 pt-0">Is this item perishable?</legend>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <input id="perishable1" type="radio" name="item[perishable]" value="true"> <label class="form-check-label" for="perishable1">Yes</label>
-                <input id="perishable2" type="radio" name="item[perishable]" value="false"> <label class="form-check-label" for="perishable2">No</label>
-              </div>
-            </div>
+        <div class="row form-group">
+          <div class="col-sm-3">Condition Status:</div>
+          <div class="col-sm-9">
+            <select name="item[condition_status]">
+                <option value="">SELECT CONDITION</option>
+                <option value="Good">Good</option>
+                <option value="Needs Cleaning">Needs Cleaning</option>
+                <option value="Needs Repair">Needs Repair</option>
+                <option value="Needs Replacement">Needs Replacement</option>
+                <option value="Lost">Lost</option>
+            </select>
           </div>
-        </fieldset>
+        </div>
 
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="condition_notes">Condition Notes:</label></div>
+          <div class="col-sm-9"><input id="condition_notes" type="text" name="item[condition_notes]"></div>
+        </div>
 
-        <p>Condition Status:<br>
-          <input type="radio" name="item[condition_status]" value="Good"> Good<br>
-          <input type="radio" name="item[condition_status]" value="Needs Cleaning"> Needs Cleaning<br>
-          <input type="radio" name="item[condition_status]" value="Needs Repair"> Needs Repair<br>
-          <input type="radio" name="item[condition_status]" value="Needs Replacement"> Needs Replacement<br>
-          <input type="radio" name="item[condition_status]" value="Lost"> Lost</p>
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="registration_code">Registration Code:</label></div>
+          <div class="col-sm-9"><input id="registration_code" type="text" name="item[registration_code]"></div>
+        </div>
 
-        <p>Condition Notes: <input type="text" name="item[condition_notes]"></p>
-        <p>Warranty or Registration Code: <input type="text" name="item[registration_code]"></p>
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="replacement_value">Replacement Value:</label></div>
+          <div class="col-sm-9"><input id="replacement_value" type="number" name="item[value]"></div>
+        </div>
 
-        <p>Replacement Value: $<input type="number" name="item[value]"></p>
+        <div class="row form-group">
+          <div class="col-sm-3">Approximate Size:</div>
+          <div class="col-sm-9">
+            <input id="size_small" type="radio" name="item[size]" value="Small"> <label for="size_small" class="radio_label">Small</label>
+            <input id="size_medium" type="radio" name="item[size]" value="Medium"> <label for="size_medium" class="radio_label">Medium</label>
+            <input id="size_large" type="radio" name="item[size]" value="Large"> <label for="size_large" class="radio_label">Large</label>
+          </div>
+        </div>
 
-        <p>Approximate Size:<br>
-          <input type="radio" name="item[size]" value="Small"> Small<br>
-          <input type="radio" name="item[size]" value="Medium"> Medium<br>
-          <input type="radio" name="item[size]" value="Large"> Large</p>
+        <div class="row form-group">
+          <div class="col-sm-3">Approximate Weight:</div>
+          <div class="col-sm-9">
+            <select name="item[weight]">
+                <option value="">SELECT WEIGHT</option>
+                <option value="Light">Light (less than 30 lbs.)</option>
+                <option value="Heavy">Heavy (1-person lift)</option>
+                <option value="Very Heavy">Very Heavy (2+ person lift)</option>
+            </select>
+          </div>
+        </div>
 
-        <p>Approximate Weight:<br>
-          <input type="radio" name="item[weight]" value="Light"> Light (less than 30 lbs.)<br>
-          <input type="radio" name="item[weight]" value="Heavy"> Heavy (1-person lift)<br>
-          <input type="radio" name="item[weight]" value="Very Heavy"> Very Heavy (2+ person lift)</p>
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="date_acquired">Date Acquired:</label></div>
+          <div class="col-sm-9"><input id="date_acquired" type="date" name="item[date_acquired]"></div>
+        </div>
 
-        <p>Date Acquired: <input type="date" name="item[date_acquired]"></p>
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="source">Source:</label></div>
+          <div class="col-sm-9"><input id="source" type="text" name="item[source]"></div>
+        </div>
 
-        <p>Source: <input type="text" name="item[source]"></p>
-
-        <input type="submit" value="Create Item">
+        <div class="row form-group">
+          <input type="submit" value="Create Item">
+        </div>
       </form>
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
     </div>
   </div>
 </div>

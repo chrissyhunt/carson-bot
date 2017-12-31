@@ -11,8 +11,9 @@
 <div class="container-fluid">
   <div class="row inside-content">
     <div class="col-sm-8 info-box">
+      <h4>Inventory by Category</h4>
       <% @user_categories.each do |category| %>
-      <h4><a href="/categories/<%=category.id%>"><%=category.name%></a> (<a href="/categories/<%=category.id%>/edit">edit</a>)</h4>
+      <p><a href="/categories/<%=category.id%>"><%=category.name%></a> (<a href="/categories/<%=category.id%>/edit">edit</a>)</p>
         <ul>
           <% category.items.each do |item| %>
             <li><%=item.name if @user.items.include?(item)%></li>
@@ -22,7 +23,7 @@
     </div>
 
     <div class="col-sm-4 info-box">
-      <h4>Sidebar</h4>
+      <%= erb :sidenav %>
     </div>
 
 

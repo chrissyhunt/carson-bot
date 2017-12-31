@@ -112,6 +112,36 @@ div.info-box a:hover {
   text-decoration: underline;
 }
 
+div.form-group input[type^="text"],
+div.form-group input[type^="number"],
+div.form-group input[type^="date"],
+div.form-group select {
+  width: 70%;
+}
+
+div.form-group input[type^="submit"] {
+  width: 40%;
+  margin: auto;
+  background-color: #7FDBFF;
+  border: none;
+  font-weight: bold;
+  padding: 0.8%;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-shadow: 1px solid #AAA;
+  letter-spacing: 1px;
+}
+
+div.form-group input[type^="submit"]:hover {
+  background-color: #F012BE;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+label.radio_label {
+  padding-right: 2%;
+}
+
 div.col-right {
   border: none;
 }

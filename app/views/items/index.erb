@@ -12,6 +12,7 @@
   <div class="row inside-content">
 
     <div class="col-sm-8 info-box">
+      <h4>Complete Home Inventory</h4>
       <% @user_items.each do |item| %>
         <p><strong><%=item.name%></strong><br>
           <strong>Location:</strong> <%=item.location.name%><br>
@@ -20,7 +21,7 @@
     </div>
 
     <div class="col-sm-4 info-box">
-      <h4>Sidebar</h4>
+      <%= erb :sidenav %>
     </div>
 
   </div>
