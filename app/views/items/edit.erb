@@ -1,50 +1,128 @@
-<h1>Edit an Item</h1>
-<form action="/items/<%=@item.id%>/edit" method="post">
-  <input type="hidden" name="item[user_id]" value="<%=@user.id%>">
-  <p>Item Name: <input type="text" name="item[name]" value="<%=@item.name%>"></p>
-  <p>Item Category:<br>
-    <% @categories.each do |category| %>
-      <input type="radio" name="item[category_id]" value="<%=category.id%>" <%='checked' if @item.category_id == category.id %>> <%=category.name%><br>
-    <% end %></p>
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>Let's update your information.</h1>
+  </div>
 
-  <p>Or create a new item category: <input type="text" name="item_category"></p>
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
 
-  <p>Current Location:<br>
-    <% @locations.each do |location| %>
-      <input type="radio" name="item[location_id]" value="<%=location.id%>" <%='checked' if @item.location_id == location.id %>> <%=location.name%><br>
-    <% end %></p>
 
-  <p>Or create a new location: <input type="text" name="location_name"></p>
+<div class="container">
+  <div class="row inside-content">
+    <div class="col-sm-8 info-box">
+      <h4>Edit <%=@item.name%></h4>
+      <form action="/items/<%=@item.id%>/edit" method="post">
+        <input type="hidden" name="item[user_id]" value="<%=@user.id%>">
 
-  <p>Is this item perishable?<br>
-  <p><input type="radio" name="item[perishable]" value="true" <%='checked' if !!@item.perishable %>> Yes
-    <input type="radio" name="item[perishable]" value="false" <%='checked' if !@item.perishable %>> No</p>
+        <div class="row form-group">
+          <div class="col-sm-3"><label for="item_name">Item Name:</label></div>
+          <div class="col-sm-9"><input id="item_name" type="text" name="item[name]" value="<%=@item.name%>"></div>
+        </div>
 
-  <p>Condition Status:<br>
-    <input type="radio" name="item[condition_status]" value="Good" <%='checked' if @item.condition_status == "Good"%>> Good<br>
-    <input type="radio" name="item[condition_status]" value="Needs Cleaning" <%='checked' if @item.condition_status == "Needs Cleaning"%>> Needs Cleaning<br>
-    <input type="radio" name="item[condition_status]" value="Needs Repair" <%='checked' if @item.condition_status == "Needs Repair"%>> Needs Repair<br>
-    <input type="radio" name="item[condition_status]" value="Needs Replacement" <%='checked' if @item.condition_status == "Needs Replacement"%>> Needs Replacement<br>
-    <input type="radio" name="item[condition_status]" value="Lost" <%='checked' if @item.condition_status == "Lost"%>> Lost</p>
+        <div class="row form-group">
+          <div class="col-sm-3">Category:</div>
+          <div class="col-sm-9">
+            <select name="item[category_id]">
+              <option value="">SELECT CATEGORY</option>
+              <% @categories.each do |category| %>
+                <option value="<%=category.id%>" <%='selected' if @item.category_id == category.id %>><%=category.name%></option>
+              <% end %>
+            </select><br>
+            <input id="new_category" type="text" name="item_category" placeholder="Or Create a New Category"></p>
+          </div>
+        </div>
 
-  <p>Condition Notes: <input type="text" name="item[condition_notes]"></p>
-  <p>Warranty or Registration Code: <input type="text" name="item[registration_code]" value="<%=@item.registration_code%>"></p>
+        <div class="row form-group">
+          <div class="col-sm-3">Location:</div>
+          <div class="col-sm-9">
+            <select name="item[location_id]">
+                <option value="">SELECT LOCATION</option>
+              <% @locations.each do |location| %>
+                <option value="<%=location.id%>" <%='selected' if @item.location_id == location.id %>><%=location.name%></option>
+              <% end %>
+            </select><br>
+            <input id="new_location" type="text" name="item_location" placeholder="Or Create a New Location">
+          </div>
+        </div>
 
-  <p>Replacement Value: $<input type="number" name="item[value]" value="<%=@item.value%>"></p>
+        <div class="row form-group">
+          <div class="col-sm-3">Perishable?</div>
+          <div class="col-sm-9">
+            <input id="perishable1" type="radio" name="item[perishable]" value="true" <%='checked' if !!@item.perishable %>> <label for="perishable1" class="radio_label">Yes</label>
+            <input id="perishable2" type="radio" name="item[perishable]" value="false" <%='checked' if !@item.perishable %>> <label for="perishable2" class="radio_label">No</label>
+          </div>
+        </div>
 
-  <p>Approximate Size:<br>
-    <input type="radio" name="item[size]" value="Small" <%='checked' if @item.size == "Small"%>> Small<br>
-    <input type="radio" name="item[size]" value="Medium" <%='checked' if @item.size == "Medium"%>> Medium<br>
-    <input type="radio" name="item[size]" value="Large" <%='checked' if @item.size == "Large"%>> Large</p>
+        <div class="row form-group">
+          <div class="col-sm-3">Condition Status:</div>
+          <div class="col-sm-9">
+            <select name="item[condition_status]">
+                <option value="">SELECT CONDITION</option>
+                <option value="Good" <%='selected' if @item.condition_status == "Good" %>>Good</option>
+                <option value="Needs Cleaning" <%='selected' if @item.condition_status == "Needs Cleaning" %>>Needs Cleaning</option>
+                <option value="Needs Repair" <%='selected' if @item.condition_status == "Needs Repair" %>>Needs Repair</option>
+                <option value="Needs Replacement" <%='selected' if @item.condition_status == "Needs Replacement" %>>Needs Replacement</option>
+                <option value="Lost" <%='selected' if @item.condition_status == "Lost" %>>Lost</option>
+            </select>
+          </div>
+        </div>
 
-  <p>Approximate Weight:<br>
-    <input type="radio" name="item[weight]" value="Light" <%='checked' if @item.weight == "Light"%>> Light (less than 30 lbs.)<br>
-    <input type="radio" name="item[weight]" value="Heavy" <%='checked' if @item.weight == "Heavy"%>> Heavy (1-person lift)<br>
-    <input type="radio" name="item[weight]" value="Very Heavy" <%='checked' if @item.weight == "Very Heavy"%>> Very Heavy (2+ person lift)</p>
+    <div class="row form-group">
+      <div class="col-sm-3"><label for="condition_notes">Condition Notes:</label></div>
+      <div class="col-sm-9"><input id="condition_notes" type="text" name="item[condition_notes]" value="<%=@item.condition_notes%>"></div>
+    </div>
 
-  <p>Date Acquired: <input type="date" name="item[date_acquired]" value="<%=@item.date_acquired%>"></p>
+    <div class="row form-group">
+      <div class="col-sm-3"><label for="registration_code">Registration Code:</label></div>
+      <div class="col-sm-9"><input id="registration_code" type="text" name="item[registration_code]" value="<%=@item.registration_code%>"></div>
+    </div>
 
-  <p>Source: <input type="text" name="item[source]" value="<%=@item.source%>"></p>
+    <div class="row form-group">
+      <div class="col-sm-3"><label for="replacement_value">Replacement Value:</label></div>
+      <div class="col-sm-9"><input id="replacement_value" type="number" name="item[value]" value="<%=@item.value%>"></div>
+    </div>
 
-  <input type="submit" value="Edit Item">
-</form>
+    <div class="row form-group">
+      <div class="col-sm-3">Approximate Size:</div>
+      <div class="col-sm-9">
+        <input id="size_small" type="radio" name="item[size]" value="Small" <%='checked' if @item.size == "Small" %>> <label for="size_small" class="radio_label">Small</label>
+        <input id="size_medium" type="radio" name="item[size]" value="Medium" <%='checked' if @item.size == "Medium" %>> <label for="size_medium" class="radio_label">Medium</label>
+        <input id="size_large" type="radio" name="item[size]" value="Large" <%='checked' if @item.size == "Large" %>> <label for="size_large" class="radio_label">Large</label>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-sm-3">Approximate Weight:</div>
+      <div class="col-sm-9">
+        <select name="item[weight]">
+            <option value="">SELECT WEIGHT</option>
+            <option value="Light" <%='selected' if @item.weight == "Light" %>>Light (less than 30 lbs.)</option>
+            <option value="Heavy" <%='selected' if @item.weight == "Heavy" %>>Heavy (1-person lift)</option>
+            <option value="Very Heavy" <%='selected' if @item.weight == "Very Heavy" %>>Very Heavy (2+ person lift)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-sm-3"><label for="date_acquired">Date Acquired:</label></div>
+      <div class="col-sm-9"><input id="date_acquired" type="date" name="item[date_acquired]" value="<%=@item.date_acquired%>"></div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-sm-3"><label for="source">Source:</label></div>
+      <div class="col-sm-9"><input id="source" type="text" name="item[source]" value="<%=@item.source%>"></div>
+    </div>
+
+    <div class="row form-group">
+      <input type="submit" value="Update Item">
+    </div>
+  </form>
+</div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+  </div>
+</div>
