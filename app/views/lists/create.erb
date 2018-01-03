@@ -1,0 +1,41 @@
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>Let's make a list.</h1>
+  </div>
+
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row inside-content">
+
+    <div class="col-sm-8 info-box">
+      <h4>Create a New List</h4>
+      <form action="/lists/new" method="post">
+        <input type="hidden" name="list[user_id]" value="<%=@user.id%>">
+
+        <div class="row form-group">
+          <div class="col-sm-3">Select Type of List:</div>
+          <div class="col-sm-9">
+            <select name="list[name]">
+                <option value="">SELECT DEFAULT LIST</option>
+                <option value="Shopping List">Shopping List</option>
+                <option value="Cleaning List">Cleaning List</option>
+                <option value="Repair List">Repair List</option>
+                <option value="Expired List">Expired List</option>
+            </select>
+            <input type="text" name="list_name" placeholder="Or Create a New List">
+          </div>
+        </div>
+        <div class="row form-group">
+          <input type="submit" value="Continue">
+        </div>
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+  </div>
+</div>
