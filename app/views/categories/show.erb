@@ -10,20 +10,28 @@
 
 <div class="container">
   <div class="row inside-content">
-    <div class="col-sm-8 info-box">
-      <h4><%=@category.name%></h4>
+    <div class="col-sm info-box">
+      <h4><%=@category.name%> Summary</h4>
+      <p>You have <%=@category.items.count%> items in <%=@category.locations.uniq.count%> locations.</p>
+
+      <% if !@category.admin_lock %>
+        <p><a href="/categories/<%=@category.id%>/edit">Edit this category</a></p>
+      <% end %>
+      <p><a href="/categories">Return to all categories</a></p>
+    </div>
+
+    <div class="col-sm info-box">
+      <h4><%=@category.name%> Inventory</h4>
 
       <p>
         <% @user_items.each do |item| %>
           <% if @category.items.include?(item) %>
-            <a href="/items/<%=item.id%>"><%=item.name%></a><br>
+            <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
+              <span class="location">In the <%=item.location.name%></span></p>
           <% end %>
         <% end %>
       </p>
 
-
-
-      <p><a href="/categories">Return to all categories</a></p>
     </div>
 
     <div class="col-sm info-box col-right">

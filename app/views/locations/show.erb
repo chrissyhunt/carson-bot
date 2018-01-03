@@ -12,7 +12,7 @@
   <div class="row inside-content">
     <div class="col-sm info-box">
       <h4><%=@location.name%> Summary</h4>
-      <p>You have <%=@location.items.count%> items in your <%=@location.name.downcase%>.</p>
+      <p>You have <%=@location.items.count%> items in <%=@location.categories.uniq.count%> categories in your <%=@location.name.downcase%>.</p>
 
       <% if !@location.admin_lock %>
         <p><a href="/locations/<%=@location.id%>/edit">Edit this location</a></p>
