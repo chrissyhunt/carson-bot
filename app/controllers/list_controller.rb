@@ -9,7 +9,7 @@ class ListController < ApplicationController
   get '/lists/new' do
     if logged_in?
       @user = current_user
-      ...
+      ert :'lists/create'
     else
       redirect to '/users/login'
     end

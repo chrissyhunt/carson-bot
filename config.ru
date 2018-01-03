@@ -9,4 +9,5 @@ use UserController
 use ItemController
 use CategoryController
 use LocationController
+use ListController
 run ApplicationController

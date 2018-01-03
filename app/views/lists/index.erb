@@ -1,0 +1,38 @@
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1><%=@user.name%>'s Lists</h1>
+  </div>
+
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row inside-content">
+
+    <div class="col-sm-8 info-box">
+      <h4><%=@user.name%>'s Lists</h4>
+      <div class="long-list">
+        <% if @user_lists.empty? %>
+          <p>You don't have any lists yet!</p>
+        <% else %>
+          <% @user_lists.each do |list| %>
+            <div>
+              <p class="category"><a href="/lists/<%=list.id%>"><%=list.name%></a></p>
+                  <% list.items.each do |item| %>
+                    <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
+                    <span class="location"><%=item.category.name%></span></p>
+                  <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+
+  </div>
+</div>
