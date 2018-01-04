@@ -1,0 +1,40 @@
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>Let's update your information.</h1>
+  </div>
+
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row inside-content">
+    <div class="col-sm-8 info-box">
+      <h4>Edit <%=@list.name%></h4>
+      <form action="/lists/<%=@list.id%>/edit" method="post">
+        <div class="row form-group">
+          <div class="col-sm-3">List Name:</div>
+          <div class="col-sm-9"><input type="text" name="list_name" value="<%=@list.name%>"></div>
+        </div>
+
+        <div class="row form_group">
+          <div class="col-sm-3">Select Items to Include:</div>
+          <div class="col-sm-9">
+            <% @user_items.each do |item| %>
+              <input id="item<%=item.id%>" type="checkbox" name="list_item[item_id][]" value="<%=item.id%>" <%='checked' if @list.items.include?(item)%>> <label for="item<%=item.id%>" class="radio_label"><%=item.name%> &nbsp;&nbsp; <span class="form-status">Status: <%=item.condition_status%></span></label><br>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <input type="submit" value="Update List">
+        </div>
+      </form>
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+  </div>
+</div>

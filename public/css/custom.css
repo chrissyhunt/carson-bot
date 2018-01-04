@@ -132,6 +132,13 @@ div.info-box span.location {
   top: -4px;
 }
 
+label.radio_label span.form-status {
+  color: #AAA;
+  font-size: 0.8em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
 div.info-box p.category {
   background-color: #DDD;
   padding: 2px 4px;
