@@ -14,14 +14,20 @@
     <div class="col-sm-8 info-box">
       <h4>Inventory by Location</h4>
       <div class="long-list">
-        <% @user_locations.each do |location| %>
+        <% if @user.items.empty? %>
           <div>
-            <p class="category"><a href="/locations/<%=location.id%>"><%=location.name%></a></p>
-                <% location.items.each do |item| %>
-                  <p><a href="/items/<%=item.id%>"><%=item.name if @user.items.include?(item)%></a><br>
-                  <span class="location"><%=item.category.name%></span></p>
-                <% end %>
+            <p>You don't have any items yet! <a href="/items/new">Add an item to your home inventory.</a></p>
           </div>
+        <% else %>
+          <% @user_locations.each do |location| %>
+            <div>
+              <p class="category"><a href="/locations/<%=location.id%>"><%=location.name%></a></p>
+                  <% location.items.each do |item| %>
+                    <p><a href="/items/<%=item.id%>"><%=item.name if @user.items.include?(item)%></a><br>
+                    <span class="location"><%=item.category.name%></span></p>
+                  <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

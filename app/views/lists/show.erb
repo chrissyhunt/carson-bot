@@ -17,10 +17,10 @@
         <div class="row display-row">
           <div class="col-sm-6"><p><a href="/items/<%=item.id%>"><%=item.name%></a><br><span class="location"><%=item.category.name%></span></p></div>
           <div class="col-sm-6"><p>Condition Status: <%=item.condition_status%><br>
-          <a href="/items/<%=item.id%>">Update Item</a></p></div>
+          <a href="/items/<%=item.id%>/edit">Update Item</a></p></div>
         </div>
       <% end %>
-
+      <p><a href="/lists/<%=@list.id%>/edit">Edit this list</a></p>
       <p><a href="/lists">Return to all lists</a></p>
     </div>
 

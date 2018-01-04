@@ -14,6 +14,9 @@
       <h4>Summary</h4>
       <% if @user.items.empty? %>
         <p>You don't have any items yet! <a href="/items/new">Add an item to your home inventory.</a></p>
+      <% elsif @user.items.count == 1 %>
+        <p>You have <a href="/items">1 item</a> in <a href="/categories">1 category</a> and <a href="/locations">1 location</a>.</p>
+        <p>You most recently added <a href="/items/<%=@user.items.last.id%>"><%= @user.items.last.name %></a>.</p>
       <% else %>
         <p>You have <a href="/items"><%= @user.items.count %> items</a> in <a href="/categories"><%= @user.categories.uniq.count %> categories</a> and <a href="/locations"><%= @user.locations.uniq.count %> locations</a>.</p>
         <p>You most recently added <a href="/items/<%=@user.items.last.id%>"><%= @user.items.last.name %></a>.</p>

@@ -21,7 +21,7 @@ class ListController < ApplicationController
       list.save
       if list.name == "Shopping List"
         current_user.items.each do |item|
-          if item.condition_status == "Needs Replacement" || item.expiration_date <= Time.now
+          if item.condition_status == "Needs Replacement" || item.expired?
             new_item = ListItem.create(item_id: item.id, list_id: list.id)
             list.list_items << new_item
           end
@@ -49,7 +49,7 @@ class ListController < ApplicationController
         end
       elsif list.name == "Expired Documents"
         current_user.items.each do |item|
-          if item.category.name == "Document" && item.expiration_date <= Time.now
+          if item.category.name == "Document" && item.expired?
             new_item = ListItem.create(item_id: item.id, list_id: list.id)
             list.list_items << new_item
           end
@@ -96,7 +96,7 @@ class ListController < ApplicationController
       redirect to "lists/#{list.id}/edit"
     end
 
-    if !params[:list_item][:item_id].empty?
+    if params[:list_item] && !params[:list_item][:item_id].empty?
       list.items.clear
       params[:list_item][:item_id].each {|item_id| list.items << Item.find_by(id: item_id)}
       list.save

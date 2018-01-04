@@ -14,17 +14,21 @@
     <div class="col-sm-8 info-box">
       <h4><%=@user.name%>'s Lists</h4>
       <div class="long-list">
-        <% if @user_lists.empty? %>
-          <p>You don't have any lists yet!</p>
+        <% if @user.items.empty? %>
+          <p style="column-count: 1">You don't have any items yet! <a href="/items/new">Add an item to your inventory here.</a></p>
         <% else %>
-          <% @user_lists.each do |list| %>
-            <div>
-              <p class="category"><a href="/lists/<%=list.id%>"><%=list.name%></a></p>
-                  <% list.items.each do |item| %>
-                    <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
-                    <span class="location"><%=item.category.name%></span></p>
-                  <% end %>
-            </div>
+          <% if @user_lists.empty? %>
+            <p>You don't have any lists yet! <a href="/lists/new">Create a list here.</a></p>
+          <% else %>
+            <% @user_lists.each do |list| %>
+              <div>
+                <p class="category"><a href="/lists/<%=list.id%>"><%=list.name%></a></p>
+                    <% list.items.each do |item| %>
+                      <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
+                      <span class="location"><%=item.category.name%></span></p>
+                    <% end %>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>

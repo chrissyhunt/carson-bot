@@ -13,16 +13,22 @@
     <div class="col-sm-8 info-box">
       <h4>Inventory by Category</h4>
       <div class="long-list">
-        <% @user_categories.each do |category| %>
-        <div>
-          <p class="category"><a href="/categories/<%=category.id%>"><%=category.name%></a></p>
-            <% category.items.each do |item| %>
-              <div>
-                <p><a href="/items/<%=item.id%>"><%=item.name if @user.items.include?(item)%></a><br>
-                  <span class="location">In the <%=item.location.name%><br></span></p>
-              </div>
-            <% end %>
-        </div>
+        <% if @user.items.empty? %>
+          <div>
+            <p>You don't have any items yet! <a href="/items/new">Add an item to your home inventory.</a></p>
+          </div>
+        <% else %>
+          <% @user_categories.each do |category| %>
+          <div>
+            <p class="category"><a href="/categories/<%=category.id%>"><%=category.name%></a></p>
+              <% category.items.each do |item| %>
+                <div>
+                  <p><a href="/items/<%=item.id%>"><%=item.name if @user.items.include?(item)%></a><br>
+                    <span class="location">In the <%=item.location.name%><br></span></p>
+                </div>
+              <% end %>
+          </div>
+          <% end %>
         <% end %>
       </div>
     </div>

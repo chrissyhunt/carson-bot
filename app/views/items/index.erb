@@ -14,11 +14,17 @@
     <div class="col-sm-8 info-box">
       <h4>Complete Home Inventory</h4>
       <div class="long-list">
-        <% @user_items.each do |item| %>
-          <div>
-            <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
-            <span class="location">In the <%=item.location.name%></span></p>
-          </div>
+        <% if @user_items.empty? %>
+        <div>
+          <p>You don't have any items yet! <a href="/items/new">Add an item to your home inventory.</a></p>
+        </div>
+        <% else %>
+          <% @user_items.each do |item| %>
+            <div>
+              <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
+              <span class="location">In the <%=item.location.name%></span></p>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
