@@ -21,7 +21,7 @@ class ListController < ApplicationController
       list.save
       if list.name == "Shopping List"
         current_user.items.each do |item|
-          if item.condition_status == "Needs Replacement"
+          if item.condition_status == "Needs Replacement" || item.expiration_date <= Time.now
             new_item = ListItem.create(item_id: item.id, list_id: list.id)
             list.list_items << new_item
           end
@@ -43,6 +43,13 @@ class ListController < ApplicationController
       elsif list.name == "Incomplete Item Records"
         current_user.items.each do |item|
           if !item.info_complete
+            new_item = ListItem.create(item_id: item.id, list_id: list.id)
+            list.list_items << new_item
+          end
+        end
+      elsif list.name == "Expired Documents"
+        current_user.items.each do |item|
+          if item.category.name == "Document" && item.expiration_date <= Time.now
             new_item = ListItem.create(item_id: item.id, list_id: list.id)
             list.list_items << new_item
           end

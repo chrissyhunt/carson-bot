@@ -29,7 +29,7 @@ class ItemController < ApplicationController
     end
 
     if params[:item_category] != ""
-      new_category = Category.create(name: params[:item_type], admin_lock: false)
+      new_category = Category.create(name: params[:item_category], admin_lock: false)
       item.category_id = new_category.id
     end
 
