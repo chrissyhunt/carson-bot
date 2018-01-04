@@ -40,6 +40,13 @@ class ListController < ApplicationController
             list.list_items << new_item
           end
         end
+      elsif list.name == "Incomplete Item Records"
+        current_user.items.each do |item|
+          if !item.info_complete
+            new_item = ListItem.create(item_id: item.id, list_id: list.id)
+            list.list_items << new_item
+          end
+        end
       end
       list.save
       redirect to "/lists/#{list.id}/edit"
