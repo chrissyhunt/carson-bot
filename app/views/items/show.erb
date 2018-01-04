@@ -54,7 +54,7 @@
       <% if @item.value %>
         <div class="row display-row">
           <div class="col-sm-3 display-label">Replacement Value:</div>
-          <div class="col-sm-9">$<%=@item.value%></div>
+          <div class="col-sm-9">$<%='%.02f' % @item.value%></div>
         </div>
       <% end %>
 
@@ -75,14 +75,14 @@
       <% if @item.date_acquired %>
         <div class="row display-row">
           <div class="col-sm-3 display-label">Date Acquired:</div>
-          <div class="col-sm-9"><%=@item.date_acquired%></div>
+          <div class="col-sm-9"><%=@item.date_acquired.strftime("%m/%d/%Y")%></div>
         </div>
       <% end %>
 
       <% if @item.expiration_date %>
         <div class="row display-row">
           <div class="col-sm-3 display-label">Expiration Date:</div>
-          <div class="col-sm-9"><%=@item.expiration_date%></div>
+          <div class="col-sm-9"><%=@item.expiration_date.strftime("%m/%d/%Y")%></div>
         </div>
       <% end %>
 

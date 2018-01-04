@@ -22,6 +22,18 @@ class ItemController < ApplicationController
   end
 
   post '/items/new' do
+    if params[:item][:name].blank?
+      redirect to '/items/new'
+    end
+
+    if params[:item_location].blank? && params[:item][:location_id].blank?
+      redirect to '/items/new'
+    end
+
+    if params[:item_category].blank? && params[:item][:category_id].blank?
+      redirect to '/items/new'
+    end
+
     item = Item.create(params[:item])
     if params[:item_location] != ""
       new_location = Location.create(name: params[:item_location], admin_lock: false)
@@ -70,6 +82,19 @@ class ItemController < ApplicationController
 
   post '/items/:id/edit' do
     item = Item.find_by(id: params[:id])
+
+    if params[:item][:name].blank?
+      redirect to "/items/#{item.id}/edit"
+    end
+
+    if params[:item_location].blank? && params[:item][:location_id].blank?
+      redirect to "/items/#{item.id}/edit"
+    end
+
+    if params[:item_category].blank? && params[:item][:category_id].blank?
+      redirect to "/items/#{item.id}/edit"
+    end
+
     item.update(params[:item])
     if params[:item_location] != ""
       new_location = Location.create(name: params[:item_location], admin_lock: false)

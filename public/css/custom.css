@@ -167,6 +167,14 @@ div.display-label {
   font-weight: 600;
 }
 
+span.required {
+  color: #F012BE;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
 div.form-group input[type^="text"],
 div.form-group input[type^="number"],
 div.form-group input[type^="date"],

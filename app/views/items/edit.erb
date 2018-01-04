@@ -15,14 +15,14 @@
       <h4>Edit <%=@item.name%></h4>
       <form action="/items/<%=@item.id%>/edit" method="post">
         <input type="hidden" name="item[user_id]" value="<%=@user.id%>">
-
+        <p><span class="required">* Required field</span></p>
         <div class="row form-group">
-          <div class="col-sm-3"><label for="item_name">Item Name:</label></div>
+          <div class="col-sm-3"><label for="item_name">Item Name: <span class="required">*</span></label></div>
           <div class="col-sm-9"><input id="item_name" type="text" name="item[name]" value="<%=@item.name%>"></div>
         </div>
 
         <div class="row form-group">
-          <div class="col-sm-3">Category:</div>
+          <div class="col-sm-3">Category: <span class="required">*</span></div>
           <div class="col-sm-9">
             <select name="item[category_id]">
               <option value="">SELECT CATEGORY</option>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="row form-group">
-          <div class="col-sm-3">Location:</div>
+          <div class="col-sm-3">Location: <span class="required">*</span></div>
           <div class="col-sm-9">
             <select name="item[location_id]">
                 <option value="">SELECT LOCATION</option>
