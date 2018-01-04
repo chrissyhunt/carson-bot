@@ -21,12 +21,17 @@
     </div>
 
     <div class="col-sm info-box">
-      <h4>To Do Lists</h4>
-      <p>You have items on <strong>X lists</strong>, including:</p>
-      <ul>
-        <li>Shopping List</li>
-        <li>Drycleaning</li>
-      </ul>
+      <h4>Your Lists</h4>
+      <% if @user.lists.empty? %>
+        <p>You don't have any lists yet! <a href="/lists/new">Create a new list here.</a></p>
+      <% else %>
+        <p>You have items on <a href="/lists"><%= @user.lists.count %> lists</a>, including:</p>
+        <ul>
+          <% @user.lists.each do |list| %>
+            <li><a href="/lists/<%=list.id%>"><%=list.name%></a></li>
+            <% end %>
+        </ul>
+      <% end %>
   </div>
 
   <div class="col-sm info-box col-right">
