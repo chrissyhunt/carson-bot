@@ -79,6 +79,13 @@
         </div>
       <% end %>
 
+      <% if @item.expiration_date %>
+        <div class="row display-row">
+          <div class="col-sm-3 display-label">Expiration Date:</div>
+          <div class="col-sm-9"><%=@item.expiration_date%></div>
+        </div>
+      <% end %>
+
       <% if @item.source != "" %>
         <div class="row display-row">
           <div class="col-sm-3 display-label">Source:</div>

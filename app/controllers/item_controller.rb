@@ -33,6 +33,14 @@ class ItemController < ApplicationController
       item.category_id = new_category.id
     end
 
+    item.info_complete = true
+    item.save
+    item.attributes.each do |attr|
+      if attr.blank?
+        item.info_complete = false
+      end
+    end
+
     item.save
     redirect to '/items'
   end
@@ -70,6 +78,14 @@ class ItemController < ApplicationController
     if params[:item_category] != ""
       new_category = Category.create(name: params[:item_category], admin_lock: false)
       item.category_id = new_category.id
+    end
+
+    item.info_complete = true
+    item.save
+    item.attributes.each do |k, v|
+      if item[k] == nil || item[k] == "" || item[k] == " "
+        item.info_complete = false
+      end
     end
 
     item.save

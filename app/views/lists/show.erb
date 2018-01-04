@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <div class="inside-header">
+    <h1>Here is your <%=@list.name%>.</h1>
+  </div>
+
+  <div class="inside-nav">
+    <%= erb :nav %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row inside-content">
+
+    <div class="col-sm-8 info-box">
+      <h4><%=@list.name%></h4>
+
+    </div>
+
+    <div class="col-sm info-box col-right">
+      <%= erb :sidenav %>
+    </div>
+  </div>
+</div>

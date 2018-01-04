@@ -43,7 +43,7 @@ class ListController < ApplicationController
       end
       list.save
       redirect to "/lists/#{list.id}/edit"
-    elsif params[:list][:name] == nil && params[:list_name] != ""
+    elsif params[:list][:name] == "" && params[:list_name] != ""
       list = List.create(name: params[:list_name], user_id: params[:list][:user_id])
       redirect to "/lists/#{list.id}/edit"
     else
@@ -73,7 +73,6 @@ class ListController < ApplicationController
   end
 
   post '/lists/:id/edit' do
-    binding.pry
     list = List.find_by(id: params[:id])
 
     if params[:list_name] != ""
@@ -91,5 +90,7 @@ class ListController < ApplicationController
       list.delete
       redirect to '/lists'
     end
+
+    redirect to "/lists/#{list.id}"
   end
 end
