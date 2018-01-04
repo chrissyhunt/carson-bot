@@ -1,24 +1,24 @@
 class ItemController < ApplicationController
 
   get '/items' do
-    if logged_in?
-      @user = current_user
-      @user_items = current_user.items.sort_by {|item| item.name}
-      erb :'items/index'
-    else
+    if !logged_in?
       redirect to '/users/login'
     end
+
+    @user = current_user
+    @user_items = current_user.items.sort_by {|item| item.name}
+    erb :'items/index'
   end
 
   get '/items/new' do
-    if logged_in?
-      @user = current_user
-      @locations = Location.all.select {|location| location.admin_lock || @user.locations.include?(location)}
-      @categories = Category.all.select {|category| category.admin_lock || @user.categories.include?(category)}
-      erb :'items/create'
-    else
+    if !logged_in?
       redirect to '/users/login'
     end
+
+    @user = current_user
+    @locations = Location.all.select {|location| location.admin_lock || @user.locations.include?(location)}
+    @categories = Category.all.select {|category| category.admin_lock || @user.categories.include?(category)}
+    erb :'items/create'
   end
 
   post '/items/new' do
@@ -59,24 +59,29 @@ class ItemController < ApplicationController
   end
 
   get '/items/:id' do
-    if logged_in?
-      @user = current_user
-      @item = Item.find_by(id: params[:id])
-      erb :'items/show'
-    else
+    if !logged_in?
       redirect to '/users/login'
     end
+
+    @user = current_user
+    @item = Item.find_by(id: params[:id])
+    erb :'items/show'
   end
 
   get '/items/:id/edit' do
+    if !logged_in?
+      redirect to '/users/login'
+    end
+
     @user = current_user
     @locations = Location.all.select {|location| location.admin_lock || @user.locations.include?(location)}
     @categories = Category.all.select {|category| category.admin_lock || @user.categories.include?(category)}
     @item = Item.find_by(id: params[:id])
-    if logged_in? && @item.user_id == current_user.id
+
+    if @item.user_id == current_user.id
       erb :'items/edit'
     else
-      redirect to '/users/login'
+      redirect to '/items'
     end
   end
 
@@ -117,5 +122,4 @@ class ItemController < ApplicationController
     item.save
     redirect to "/items/#{item.id}"
   end
-
 end

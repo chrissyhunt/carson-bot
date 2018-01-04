@@ -1,12 +1,12 @@
 class UserController < ApplicationController
 
   get '/users' do
-    if logged_in?
-      @user = current_user
-      erb :'/users/index'
-    else
+    if !logged_in?
       redirect to '/users/login'
     end
+
+    @user = current_user
+    erb :'/users/index'
   end
 
   get '/users/signup' do
@@ -42,12 +42,12 @@ class UserController < ApplicationController
   end
 
   get '/users/edit' do
-    if logged_in?
-      @user = current_user
-      erb :'/users/edit'
-    else
+    if !logged_in?
       redirect to '/users/login'
     end
+
+    @user = current_user
+    erb :'/users/edit'
   end
 
   post '/users/edit' do

@@ -1,31 +1,41 @@
 class CategoryController < ApplicationController
 
   get '/categories' do
-    if logged_in?
-      @user = current_user
-      @user_categories = current_user.categories.uniq.sort_by {|category| category.name}
-      erb :'categories/index'
-    else
+    if !logged_in?
       redirect to '/users/login'
     end
+
+    @user = current_user
+    @user_categories = current_user.categories.uniq.sort_by {|category| category.name}
+    erb :'categories/index'
   end
 
   get '/categories/:id' do
+    if !logged_in?
+      redirect to '/users/login'
+    end
+
     @category = Category.find_by(id: params[:id])
     @user_items = current_user.items
-    if logged_in? && current_user.categories.include?(@category)
+
+    if current_user.categories.include?(@category)
       erb :'categories/show'
     else
-      redirect to '/users/login'
+      redirect to '/categories'
     end
   end
 
   get '/categories/:id/edit' do
+    if !logged_in?
+      redirect to '/users/login'
+    end
+
     @category = Category.find_by(id: params[:id])
-    if logged_in? && current_user.categories.include?(@category)
+
+    if current_user.categories.include?(@category)
       erb :'categories/edit'
     else
-      redirect to '/users/login'
+      redirect to '/categories'
     end
   end
 
@@ -39,5 +49,4 @@ class CategoryController < ApplicationController
       redirect to '/categories'
     end
   end
-
 end
