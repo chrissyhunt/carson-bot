@@ -13,7 +13,15 @@
 
     <div class="col-sm-8 info-box">
       <h4><%=@list.name%></h4>
+      <% @list.items.each do |item| %>
+        <div class="row display-row">
+          <div class="col-sm-6"><p><a href="/items/<%=item.id%>"><%=item.name%></a><br><span class="location"><%=item.category.name%></span></p></div>
+          <div class="col-sm-6"><p>Condition Status: <%=item.condition_status%><br>
+          <a href="/items/<%=item.id%>">Update Item</a></p></div>
+        </div>
+      <% end %>
 
+      <p><a href="/lists">Return to all lists</a></p>
     </div>
 
     <div class="col-sm info-box col-right">
