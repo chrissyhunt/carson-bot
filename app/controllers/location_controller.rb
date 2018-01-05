@@ -18,6 +18,8 @@ class LocationController < ApplicationController
     @user = current_user
     @location = Location.find_by(id: params[:id])
     @user_items = current_user.items.sort_by {|item| item.name}
+    @location_items = @location.items.select {|item| item.user == current_user}
+    @location_categories = @location_items.map {|item| item.category.name}
 
     if current_user.locations.include?(@location)
       erb :'locations/show'
@@ -50,6 +52,5 @@ class LocationController < ApplicationController
       redirect to '/locations'
     end
   end
-
 
 end

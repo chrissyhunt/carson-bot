@@ -20,6 +20,10 @@
           <a href="/items/<%=item.id%>/edit">Update Item</a></p></div>
         </div>
       <% end %>
+      <form action="/lists/<%=@list.id%>/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <p><input class="delete-button" type="submit" value="Delete this list"></p>
+      </form>
       <p><a href="/lists/<%=@list.id%>/edit">Edit this list</a></p>
       <p><a href="/lists">Return to all lists</a></p>
     </div>

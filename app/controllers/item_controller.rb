@@ -122,4 +122,28 @@ class ItemController < ApplicationController
     item.save
     redirect to "/items/#{item.id}"
   end
+
+  delete '/items/:id/delete' do
+    if !logged_in?
+      redirect to '/users/login'
+    end
+
+    item = Item.find_by(id: params[:id])
+    location = item.location
+    category = item.category
+
+    if item.user_id == current_user.id
+      item.delete
+    end
+
+    if !location.admin_lock && location.items.empty?
+      location.delete
+    end
+
+    if !category.admin_lock && category.items.empty?
+      category.delete
+    end
+
+    redirect to '/items'
+  end
 end

@@ -12,7 +12,7 @@
   <div class="row inside-content">
     <div class="col-sm info-box">
       <h4><%=@category.name%> Summary</h4>
-      <p>You have <%=@category.items.count%> items in <%=@category.locations.uniq.count%> locations.</p>
+      <p>You have <%=@category_items.count%> items in <%=@category_locations.uniq.count%> locations.</p>
 
       <% if !@category.admin_lock %>
         <p><a href="/categories/<%=@category.id%>/edit">Edit this category</a></p>

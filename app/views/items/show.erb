@@ -93,6 +93,11 @@
         </div>
       <% end %>
 
+        <form action="/items/<%=@item.id%>/delete" method="post">
+          <input class="delete-button" type="hidden" name="_method" value="delete">
+          <p><input type="submit" value="Delete this item"></p>
+        </form>
+
         <p><a href="/items/<%=@item.id%>/edit">Edit this item</a></p>
         <p><a href="/items">Return to all items</a></p>
     </div>

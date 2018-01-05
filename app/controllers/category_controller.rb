@@ -17,6 +17,8 @@ class CategoryController < ApplicationController
 
     @category = Category.find_by(id: params[:id])
     @user_items = current_user.items
+    @category_items = @category.items.select {|item| item.user == current_user}
+    @category_locations = @category_items.map {|item| item.location.name}
 
     if current_user.categories.include?(@category)
       erb :'categories/show'

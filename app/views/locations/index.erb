@@ -22,10 +22,12 @@
           <% @user_locations.each do |location| %>
             <div>
               <p class="category"><a href="/locations/<%=location.id%>"><%=location.name%></a></p>
-                  <% location.items.each do |item| %>
-                    <p><a href="/items/<%=item.id%>"><%=item.name if @user.items.include?(item)%></a><br>
-                    <span class="location"><%=item.category.name%></span></p>
-                  <% end %>
+              <% location.items.each do |item| %>
+                <% if @user.items.include?(item) %>
+                  <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
+                  <span class="location"><%=item.category.name%></span></p>
+                <% end %>
+              <% end %>
             </div>
           <% end %>
         <% end %>

@@ -22,10 +22,12 @@
           <div>
             <p class="category"><a href="/categories/<%=category.id%>"><%=category.name%></a></p>
               <% category.items.each do |item| %>
-                <div>
-                  <p><a href="/items/<%=item.id%>"><%=item.name if @user.items.include?(item)%></a><br>
-                    <span class="location">In the <%=item.location.name%><br></span></p>
-                </div>
+                <% if @user.items.include?(item) %>
+                  <div>
+                    <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
+                      <span class="location">In the <%=item.location.name%><br></span></p>
+                  </div>
+                <% end %>
               <% end %>
           </div>
           <% end %>
