@@ -68,4 +68,14 @@ class UserController < ApplicationController
     redirect to '/users/login'
   end
 
+  delete '/users/delete' do
+    if !logged_in?
+      redirect to '/users/login'
+    end
+
+    current_user.delete
+    session.clear
+    redirect to '/'
+  end
+
 end
