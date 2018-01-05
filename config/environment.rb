@@ -7,6 +7,11 @@ configure :development do
   set :database, 'sqlite3:db/database.db'
 end
 
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'clothing', 'clothing'
+  inflect.irregular 'furniture', 'furniture'
+end
+
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
