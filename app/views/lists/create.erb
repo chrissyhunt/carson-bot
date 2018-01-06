@@ -13,6 +13,9 @@
 
     <div class="col-sm-8 info-box">
       <h4>Create a New List</h4>
+      <% if flash.has?(:message) %>
+        <p class="flash-error"><%= flash[:message] %></p>
+      <% end %>
       <form action="/lists/new" method="post">
         <input type="hidden" name="list[user_id]" value="<%=@user.id%>">
 

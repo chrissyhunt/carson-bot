@@ -24,53 +24,68 @@ class ListController < ApplicationController
       redirect to '/users/login'
     end
 
-    if params[:list][:name] != ""
-      list = List.create(name: params[:list][:name], user_id: params[:list][:user_id])
-      list.save
-      if list.name == "Shopping List"
-        current_user.items.each do |item|
-          if item.condition_status == "Needs Replacement" || item.expired?
-            new_item = ListItem.create(item_id: item.id, list_id: list.id)
-            list.list_items << new_item
-          end
-        end
-      elsif list.name == "Cleaning List"
-        current_user.items.each do |item|
-          if item.condition_status == "Needs Cleaning"
-            new_item = ListItem.create(item_id: item.id, list_id: list.id)
-            list.list_items << new_item
-          end
-        end
-      elsif list.name == "Repair List"
-        current_user.items.each do |item|
-          if item.condition_status == "Needs Repair"
-            new_item = ListItem.create(item_id: item.id, list_id: list.id)
-            list.list_items << new_item
-          end
-        end
-      elsif list.name == "Incomplete Item Records"
-        current_user.items.each do |item|
-          if item.info_incomplete?
-            new_item = ListItem.create(item_id: item.id, list_id: list.id)
-            list.list_items << new_item
-          end
-        end
-      elsif list.name == "Expired Documents"
-        current_user.items.each do |item|
-          if item.category.name == "Document" && item.expired?
-            new_item = ListItem.create(item_id: item.id, list_id: list.id)
-            list.list_items << new_item
-          end
+    if params[:list][:name] == "" || params[:list][:name] == " " || params[:list][:name].blank?
+      if params[:list_name] == "" || params[:list_name] == " " || params[:list_name].blank?
+        flash[:message] = "Your list needs a name."
+        redirect to '/lists/new'
+      end
+    end
+
+    if params[:list][:name] != "" || params[:list][:name] != " " || !params[:list][:name].blank?
+      list = List.find_or_create_by(name: params[:list][:name], user_id: params[:list][:user_id])
+    elsif params[:list_name] != "" || params[:list_name] != " " || !params[:list_name].blank?
+      list = List.find_or_create_by(name: params[:list_name], user_id: params[:list][:user_id])
+    end
+
+    list.save
+
+    if list.name == "Shopping List"
+      current_user.items.each do |item|
+        if item.condition_status == "Needs Replacement" || item.expired?
+          new_item = ListItem.create(item_id: item.id, list_id: list.id)
+          list.list_items << new_item
         end
       end
-      list.save
-      redirect to "/lists/#{list.id}/edit"
-    elsif params[:list][:name] == "" && params[:list_name] != ""
-      list = List.create(name: params[:list_name], user_id: params[:list][:user_id])
-      redirect to "/lists/#{list.id}/edit"
-    else
-      redirect to '/lists/new'
     end
+
+    if list.name == "Cleaning List"
+      current_user.items.each do |item|
+        if item.condition_status == "Needs Cleaning"
+          new_item = ListItem.create(item_id: item.id, list_id: list.id)
+          list.list_items << new_item
+        end
+      end
+    end
+
+    if list.name == "Repair List"
+      current_user.items.each do |item|
+        if item.condition_status == "Needs Repair"
+          new_item = ListItem.create(item_id: item.id, list_id: list.id)
+          list.list_items << new_item
+        end
+      end
+    end
+
+    if list.name == "Incomplete Item Records"
+      current_user.items.each do |item|
+        if item.info_incomplete?
+          new_item = ListItem.create(item_id: item.id, list_id: list.id)
+          list.list_items << new_item
+        end
+      end
+    end
+
+    if list.name == "Expired Documents"
+      current_user.items.each do |item|
+        if item.category.name == "Document" && item.expired?
+          new_item = ListItem.create(item_id: item.id, list_id: list.id)
+          list.list_items << new_item
+        end
+      end
+    end
+
+    list.save
+    redirect to "/lists/#{list.id}/edit"
   end
 
   post '/lists/:id/update' do
@@ -167,6 +182,7 @@ class ListController < ApplicationController
       list.name = params[:list_name]
       list.save
     else
+      flash[:message] = "Your list needs a name."
       redirect to "lists/#{list.id}/edit"
     end
 
