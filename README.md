@@ -1,21 +1,21 @@
-## Welcome to CarsonBot!
+# Welcome to CarsonBot!
 
 CarsonBot is a versatile home inventory management system built using Sinatra, ActiveRecord, and ActiveSupport.
 
 
-# Installation
+## Installation
 
 Run ``bundle install`` to install all required gems.
 
 
-# To Run Locally
+## To Run Locally
 
 Run ``shotgun`` in root directory. (Default port is 9393. Application will error if port is in use.)
 
 Open browser and navigate to http://localhost:9393/. Application landing page will appear.
 
 
-# File Structure
+## File Structure
 
 ``config.ru`` - Specifies files to use and run.
 
@@ -28,7 +28,7 @@ Open browser and navigate to http://localhost:9393/. Application landing page wi
 ``/public`` - Contains custom CSS and UI assets.
 
 
-# Routes and Features
+## Routes and Features
 
 ``/`` - Landing page, will direct you to log in or sign up.
 
