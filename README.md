@@ -39,3 +39,8 @@ Open browser and navigate to http://localhost:9393/. Application landing page wi
 ``/categories`` - Shows all of a logged in user's items organized by category. Users can select one of the provided default categories (which are protected from editing) when creating a new item, or create their own custom categories. Custom categories are automatically deleted when they have no items assigned to them.
 
 ``/lists`` - Shows all lists belonging to a user. Users can create entirely customized lists, or automatically generate new lists from several default list type (e.g. "Shopping List"), which will auto-populate the list with items based on each item's stored data. Lists can be deleted by the user, and will also automatically be deleted when they have no list items assigned to them.
+
+
+## Disclaimer
+
+Downton Abbey and the character of Carson the Butler are not my property. This is a non-profit student portfolio project and is in no way affiliated with the Downton Abbey TV show or its owners.
