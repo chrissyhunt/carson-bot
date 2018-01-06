@@ -12,7 +12,7 @@
   <div class="row inside-content">
     <div class="col-sm info-box">
       <h4><%=@location.name%> Summary</h4>
-      <p>You have <%=@location_items.count%> items in <%=@location_categories.uniq.count%> categories in your <%=@location.name.downcase%>.</p>
+      <p>You have <%=@location_items.count%> item<%='s' if @location_items.count > 1%> in <%=@location_categories.uniq.count%> <%='categories' if @location_categories.uniq.count > 1%><%='category' if @location_categories.uniq.count == 1%> in your <%=@location.name.downcase%>.</p>
 
       <% if !@location.admin_lock %>
         <p><a href="/locations/<%=@location.id%>/edit">Edit this location</a></p>
@@ -25,7 +25,7 @@
         <% @user_items.each do |item| %>
           <% if @location.items.include?(item) %>
             <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
-              <span class="location"><%=item.size%> <%=item.category.name%>, <%=item.weight%></span></p>
+              <span class="location"><%=item.size%> <%=item.category.name%><%=',' if item.weight%> <%=item.weight%></span></p>
           <% end %>
         <% end %>
     </div>

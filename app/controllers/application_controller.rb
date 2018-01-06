@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
       User.find_by(id: session[:user_id])
     end
 
-    def plural? 
+    def plural?
       self.name == self.name.pluralize
     end
   end

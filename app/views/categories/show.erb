@@ -12,7 +12,7 @@
   <div class="row inside-content">
     <div class="col-sm info-box">
       <h4><%=@category.name%> Summary</h4>
-      <p>You have <%=@category_items.count%> items in <%=@category_locations.uniq.count%> locations.</p>
+      <p>You have <%=@category_items.count%> item<%='s' if @category_items.count > 1%> in <%=@category_locations.uniq.count%> location<%='s' if @category_locations.uniq.count > 1%>.</p>
 
       <% if !@category.admin_lock %>
         <p><a href="/categories/<%=@category.id%>/edit">Edit this category</a></p>
@@ -27,7 +27,7 @@
         <% @user_items.each do |item| %>
           <% if @category.items.include?(item) %>
             <p><a href="/items/<%=item.id%>"><%=item.name%></a><br>
-              <span class="location">In the <%=item.location.name%></span></p>
+              <span class="location">In the <%=item.location.name%><%=',' if item.condition_status%> <%=item.condition_status%></span></p>
           <% end %>
         <% end %>
       </p>

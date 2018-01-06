@@ -15,11 +15,18 @@
       <h4><%=@list.name%></h4>
       <% @list.items.each do |item| %>
         <div class="row display-row">
-          <div class="col-sm-6"><p><a href="/items/<%=item.id%>"><%=item.name%></a><br><span class="location"><%=item.category.name%></span></p></div>
-          <div class="col-sm-6"><p>Condition Status: <%=item.condition_status%><br>
-          <a href="/items/<%=item.id%>/edit">Update Item</a></p></div>
+          <div class="col-sm-5"><p><a href="/items/<%=item.id%>"><%=item.name%></a><br><span class="location"><%=item.category.name%></span></p></div>
+          <div class="col-sm-4"><p>Condition Status:<br> <span class="location"><%=item.condition_status%><%=', expired' if item.expired?%></span></p></div>
+          <div class="col-sm-3"><p><a href="/items/<%=item.id%>/edit">Update Item</a></p></div>
         </div>
       <% end %>
+
+      <% if @list.auto_supported? %>
+        <form action="/lists/<%=@list.id%>/update" method="post">
+          <p><input class="delete-button" type="submit" value="Auto update this list"></p>
+        </form>
+      <% end %>
+
       <form action="/lists/<%=@list.id%>/delete" method="post">
         <input type="hidden" name="_method" value="delete">
         <p><input class="delete-button" type="submit" value="Delete this list"></p>

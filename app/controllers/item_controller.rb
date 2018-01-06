@@ -46,14 +46,6 @@ class ItemController < ApplicationController
       item.category_id = new_category.id
     end
 
-    item.info_complete = true
-    item.save
-    item.attributes.each do |attr|
-      if attr.blank?
-        item.info_complete = false
-      end
-    end
-
     item.save
     redirect to '/items'
   end

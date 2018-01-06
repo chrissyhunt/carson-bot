@@ -9,4 +9,10 @@ class Item < ActiveRecord::Base
     !!self.expiration_date && self.expiration_date < Time.now
   end
 
+  def info_incomplete?
+    self.attributes.any? do |attr|
+      self[attr] == "" || self[attr] == " " || self[attr] == nil
+    end
+  end
+
 end
