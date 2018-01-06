@@ -44,6 +44,12 @@ class LocationController < ApplicationController
 
   post '/locations/:id/edit' do
     location = Location.find_by(id: params[:id])
+
+    if params[:name] == "" || params[:name] == " " || params[:name].blank?
+      flash[:message] = "Your location needs a name."
+      redirect to "/locations/#{location.id}/edit"
+    end
+
     if !location.admin_lock
       location.name = params[:name]
       location.save

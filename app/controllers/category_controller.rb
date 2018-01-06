@@ -43,6 +43,12 @@ class CategoryController < ApplicationController
 
   post '/categories/:id/edit' do
     category = Category.find_by(id: params[:id])
+
+    if params[:name] == "" || params[:name] == " " || params[:name].blank?
+      flash[:message] = "Your category needs a name."
+      redirect to "/categories/#{category.id}/edit"
+    end
+
     if !category.admin_lock
       category.name = params[:name]
       category.save

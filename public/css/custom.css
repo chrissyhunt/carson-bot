@@ -112,6 +112,12 @@ div.info-box p, li {
   font-size: 1em;
 }
 
+div.info-box p.flash-error {
+  color: #F012BE;
+  font-style: italic;
+  font-weight: 400;
+}
+
 div.info-box a {
   color: #000;
   font-weight: 500;
@@ -185,20 +191,24 @@ div.form-group select {
 div.form-group input[type^="submit"] {
   width: 40%;
   margin: auto;
-  background-color: #7FDBFF;
+  /* background-color: #7FDBFF;
   border: none;
   font-weight: bold;
   padding: 0.8%;
   text-transform: uppercase;
   color: #FFFFFF;
   text-shadow: 1px solid #AAA;
-  letter-spacing: 1px;
+  letter-spacing: 1px; */
 }
 
 div.form-group input[type^="submit"]:hover {
-  background-color: #F012BE;
+  /* background-color: #F012BE;
   text-decoration: none;
-  text-shadow: none;
+  text-shadow: none; */
+}
+
+div.form-group:last-of-type {
+  margin-top: 5%;
 }
 
 label.radio_label {
@@ -335,7 +345,7 @@ div.welcome-text h3, div.info h3, div.inside-header h3 {
   padding: 2%;
 }
 
-dif.info h1 {
+div.info h1 {
   text-align: center;
 }
 

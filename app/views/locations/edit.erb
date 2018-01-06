@@ -12,6 +12,9 @@
   <div class="row inside-content">
     <div class="col-sm-8 info-box">
       <h4>Edit <%=@location.name%></h4>
+      <% if flash.has?(:message) %>
+        <p class="flash-error"><%= flash[:message] %></p>
+      <% end %>
       <% if !@location.admin_lock %>
 
         <form action="/locations/<%=@location.id%>/edit" method="post">

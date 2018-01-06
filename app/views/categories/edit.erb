@@ -12,6 +12,9 @@
   <div class="row inside-content">
     <div class="col-sm-8 info-box">
       <h4>Edit <%=@category.name%></h4>
+      <% if flash.has?(:message) %>
+        <p class="flash-error"><%= flash[:message] %></p>
+      <% end %>
       <% if !@category.admin_lock %>
 
         <form action="/categories/<%=@category.id%>/edit" method="post">
