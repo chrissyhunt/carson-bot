@@ -12,6 +12,9 @@
   <div class="row inside-content">
     <div class="col-sm-8 info-box">
       <h4>Update Your Account Information</h4>
+      <% if flash.has?(:message) %>
+        <p><em><%= flash[:message] %></em></p>
+      <% end %>
       <form action="/users/edit" method="post">
 
         <div class="row form-group">
@@ -38,7 +41,7 @@
           <input type="hidden" name="_method" value="delete">
           <input type="submit" value="Delete this account">
         </form>
-      
+
     </div>
 
     <div class="col-sm info-box col-right">

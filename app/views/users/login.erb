@@ -1,5 +1,8 @@
 <div class="container info">
   <h1>Log In</h1>
+  <% if flash.has?(:message) %>
+    <p><em><%= flash[:message] %></em></p>
+  <% end %>
   <form action="/users/login" method="post">
       <p><label for="user_email">Enter Email:</label><br>
       <input id="user_email" type="text" name="user[email]"></p>

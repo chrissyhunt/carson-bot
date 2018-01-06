@@ -1,5 +1,8 @@
 <div class="container info">
   <h1>Create a New Account</h1>
+  <% if flash.has?(:message) %>
+    <p><em><%= flash[:message] %></em></p>
+  <% end %>
   <form action="/users/signup" method="post">
     <p><label id="user_name">Your Name:</label><br>
       <input type="text" name="user[name]"></p>
