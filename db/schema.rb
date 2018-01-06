@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104011015) do
+ActiveRecord::Schema.define(version: 20180106030652) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -32,13 +32,11 @@ ActiveRecord::Schema.define(version: 20180104011015) do
     t.date "date_acquired"
     t.string "source"
     t.date "expiration_date"
-    t.boolean "info_complete"
   end
 
   create_table "list_items", force: :cascade do |t|
     t.integer "list_id"
     t.integer "item_id"
-    t.string "notes"
   end
 
   create_table "lists", force: :cascade do |t|
