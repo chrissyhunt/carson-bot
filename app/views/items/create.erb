@@ -14,6 +14,9 @@
 
     <div class="col-sm-8 info-box">
       <h4>Add a New Item</h4>
+      <% if flash.has?(:message) %>
+        <p class="flash-error"><%= flash[:message] %></p>
+      <% end %>
       <form action="/items/new" method="post">
         <input type="hidden" name="item[user_id]" value="<%=@user.id%>">
         <p><span class="required">* Required field</span></p>

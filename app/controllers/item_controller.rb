@@ -23,14 +23,17 @@ class ItemController < ApplicationController
 
   post '/items/new' do
     if params[:item][:name].blank?
+      flash[:message] = "Your item needs a name."
       redirect to '/items/new'
     end
 
     if params[:item_location].blank? && params[:item][:location_id].blank?
+      flash[:message] = "Your item needs a location."
       redirect to '/items/new'
     end
 
     if params[:item_category].blank? && params[:item][:category_id].blank?
+      flash[:message] = "Your item needs a category."
       redirect to '/items/new'
     end
 
@@ -81,14 +84,17 @@ class ItemController < ApplicationController
     item = Item.find_by(id: params[:id])
 
     if params[:item][:name].blank?
+      flash[:message] = "Your item needs a name."
       redirect to "/items/#{item.id}/edit"
     end
 
     if params[:item_location].blank? && params[:item][:location_id].blank?
+      flash[:message] = "Your item needs a location."
       redirect to "/items/#{item.id}/edit"
     end
 
     if params[:item_category].blank? && params[:item][:category_id].blank?
+      flash[:message] = "Your item needs a category."
       redirect to "/items/#{item.id}/edit"
     end
 
@@ -102,15 +108,6 @@ class ItemController < ApplicationController
       new_category = Category.create(name: params[:item_category], admin_lock: false)
       item.category_id = new_category.id
     end
-
-    item.info_complete = true
-    item.save
-    item.attributes.each do |k, v|
-      if item[k] == nil || item[k] == "" || item[k] == " "
-        item.info_complete = false
-      end
-    end
-
     item.save
     redirect to "/items/#{item.id}"
   end
