@@ -181,6 +181,15 @@ span.required {
   font-size: 0.9em;
 }
 
+div.center {
+  text-align: center;
+}
+
+div.center input[type^="submit"] {
+  width: 40%;
+  margin: auto;
+}
+
 div.form-group input[type^="text"],
 div.form-group input[type^="number"],
 div.form-group input[type^="date"],
