@@ -1,9 +1,18 @@
-Location.all.each do |location|
-  location.admin_lock = true
-  location.save
-end
+Location.create(name: "Bedroom", admin_lock: true)
+Location.create(name: "Living Room", admin_lock: true)
+Location.create(name: "Kitchen", admin_lock: true)
+Location.create(name: "Garage", admin_lock: true)
+Location.create(name: "Attic", admin_lock: true)
+Location.create(name: "Basement", admin_lock: true)
+Location.create(name: "Bathroom", admin_lock: true)
+Location.create(name: "Closet", admin_lock: true)
 
-Category.all.each do |category|
-  category.admin_lock = true
-  category.save
-end
+Category.create(name: "Book", admin_lock: true)
+Category.create(name: "Furniture", admin_lock: true)
+Category.create(name: "DVD", admin_lock: true)
+Category.create(name: "Document", admin_lock: true)
+Category.create(name: "Household Appliance", admin_lock: true)
+Category.create(name: "Computer", admin_lock: true)
+Category.create(name: "Clothing", admin_lock: true)
+Category.create(name: "Game", admin_lock: true)
+Category.create(name: "Jewelry", admin_lock: true)
