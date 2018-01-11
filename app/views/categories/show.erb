@@ -1,6 +1,10 @@
 <div class="jumbotron">
   <div class="inside-header">
-    <h1>Here are your <%=@category.name.pluralize.downcase%>.</h1>
+    <% if @category.name == "Furniture" %>
+      <h1>Here is your <%=@category.name.downcase%>.</h1>
+    <% else %>
+      <h1>Here are your <%=@category.name.pluralize.downcase%>.</h1>
+    <% end %>
   </div>
 
   <div class="inside-nav">
