@@ -1,6 +1,6 @@
 # Welcome to CarsonBot!
 
-CarsonBot is a versatile home inventory management system built using Sinatra, ActiveRecord, and ActiveSupport.
+CarsonBot is a versatile home inventory management system built using Sinatra, ActiveRecord, ActiveSupport, bcrypt, and Rack Flash.
 
 
 ## Installation
