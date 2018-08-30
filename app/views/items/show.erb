@@ -93,6 +93,13 @@
         </div>
       <% end %>
 
+      <% if @item.notes != "" %>
+        <div class="row display-row">
+          <div class="col-sm-3 display-label">Notes:</div>
+          <div class="col-sm-9"><%=@item.notes%></div>
+        </div>
+      <% end %>
+
         <form action="/items/<%=@item.id%>/delete" method="post">
           <input class="delete-button" type="hidden" name="_method" value="delete">
           <p><input type="submit" value="Delete this item"></p>

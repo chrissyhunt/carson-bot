@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106030652) do
+ActiveRecord::Schema.define(version: 20180124160558) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180106030652) do
     t.date "date_acquired"
     t.string "source"
     t.date "expiration_date"
+    t.string "notes"
   end
 
   create_table "list_items", force: :cascade do |t|

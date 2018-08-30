@@ -83,6 +83,10 @@ class ItemController < ApplicationController
   post '/items/:id/edit' do
     item = Item.find_by(id: params[:id])
 
+    if !current_user.items.include?(item)
+      redirect to "/items"
+    end
+
     if params[:item][:name].blank?
       flash[:message] = "Your item needs a name."
       redirect to "/items/#{item.id}/edit"

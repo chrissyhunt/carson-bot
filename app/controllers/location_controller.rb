@@ -45,6 +45,10 @@ class LocationController < ApplicationController
   post '/locations/:id/edit' do
     location = Location.find_by(id: params[:id])
 
+    if !current_user.locations.include?(location)
+      redirect to '/locations'
+    end
+
     if params[:name] == "" || params[:name] == " " || params[:name].blank?
       flash[:message] = "Your location needs a name."
       redirect to "/locations/#{location.id}/edit"

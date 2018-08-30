@@ -34,19 +34,19 @@ class UserController < ApplicationController
     end
 
     if User.find_by(email: params[:user][:email])
-    flash[:message] = "An account already exists for that email address.<br> Please log in or choose a different email."
-      redirect to '/users/signup'
-    end
+      flash[:message] = "An account already exists for that email address.<br> Please log in or choose a different email."
+        redirect to '/users/signup'
+      end
 
-    new_user = User.create(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
+      new_user = User.create(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
 
-    if new_user.save
-      session[:user_id] = new_user.id
-      redirect to '/users'
-    else
-      redirect to '/signup'
+      if new_user.save
+        session[:user_id] = new_user.id
+        redirect to '/users'
+      else
+        redirect to '/signup'
+      end
     end
-  end
 
   get '/users/login' do
     if logged_in?
